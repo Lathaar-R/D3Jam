@@ -16,11 +16,21 @@ public class PlayerMovment : MonoBehaviour
 
     [SerializeField] private Collider2D _playerCollider;    //Player Collider
 
+    private bool _moving;   //Flag para a rotina de movimentacao
+
 
     //Public fields
+    
+
+    public float walkSpeed;
+
     //Bolleanos de colisao
-    public bool cRight, cLeft, cUp, cDown, moving;
+    public bool cRight, cLeft, cUp, cDown;
+
+    //Proprierties
+    public bool Moving { get {return _moving;} }
     #endregion
+
 
     
     void Start()
@@ -39,7 +49,7 @@ public class PlayerMovment : MonoBehaviour
         GetherInputs();
 
         //Testar colisao com paredes
-        //TestCollisions();
+        TestCollisions();
 
         
 
@@ -49,11 +59,26 @@ public class PlayerMovment : MonoBehaviour
 
     private void TestCollisions()
     {
+        if(!_moving)
+        {
         if(_playerInputs.x != 0)
         {
-            var pos = transform.position;
-            //var hit = Physics2D.Raycast(transform.position, )
+            if(_playerInputs.x > 0)
+                _movementQueue.Enqueue(Vector2.right);
+            else
+                _movementQueue.Enqueue(Vector2.left);
         }
+        if(_playerInputs.y != 0)
+        {
+            if(_playerInputs.y > 0)
+                _movementQueue.Enqueue(Vector2.up);
+            else
+                _movementQueue.Enqueue(Vector2.down);
+        }
+            StartCoroutine("DoMove");
+        }
+        
+
     }
 
     void GetherInputs()
@@ -69,13 +94,26 @@ public class PlayerMovment : MonoBehaviour
     
 
     // movement coroutine
-    // private IEnumerator DoMove()
-    // {
-    //     while(_movementQueue.Count > 0)
-    //     {
+    private IEnumerator DoMove()
+    {
+        _moving = true;
+        while(_movementQueue.Count > 0)
+        {
+            Vector3 pos = transform.position;
+            Vector3 finish = (Vector3)_movementQueue.Dequeue() + pos;
 
-    //     }
-    // }
+            while (transform.position != finish)
+            {
+                pos = Vector3.MoveTowards(pos, finish, walkSpeed * Time.deltaTime);
+                transform.position = pos;
+                
+                yield return new WaitForEndOfFrame();
+            }
+
+        }
+
+        _moving = false;
+    }
 
 }
 

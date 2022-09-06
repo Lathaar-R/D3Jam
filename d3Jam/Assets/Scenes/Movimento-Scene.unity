@@ -529,8 +529,9 @@ MonoBehaviour:
     x: 0
     y: 0
   _playerCollider: {fileID: 0}
+  moving: 0
+  walkSpeed: 10
   cRight: 0
   cLeft: 0
   cUp: 0
   cDown: 0
-  moving: 0
