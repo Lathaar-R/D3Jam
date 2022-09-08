@@ -10,19 +10,22 @@ public class PlayerMovment : MonoBehaviour
     #region Variables
     //Private Fields
     private Queue<Vector2> _movementQueue = new();
-    private Vector2 _gridDisplacment = new(0.5f, 0.5f);
-    private Vector2Int _gridPos = Vector2Int.zero;
+    //private Vector2 _gridDisplacment = new(0.5f, 0.5f);
+    private Vector3Int _gridPos = Vector3Int.zero;
+    [SerializeField] private float gridSize = 1;
     [SerializeField] private Inputs _playerInputs;
 
     [SerializeField] private Collider2D _playerCollider;    //Player Collider
 
     private bool _moving;   //Flag para a rotina de movimentacao
+    Collider2D[] results = new Collider2D[3];
 
 
     //Public fields
     
 
     public float walkSpeed;
+    public LayerMask groundLayer;
 
     //Bolleanos de colisao
     public bool cRight, cLeft, cUp, cDown;
@@ -36,8 +39,8 @@ public class PlayerMovment : MonoBehaviour
     void Start()
     {
         //Ajust initial pos
-        _gridPos = Vector2Int.RoundToInt(transform.position);
-        transform.position = _gridPos + _gridDisplacment;
+        _gridPos = Vector3Int.RoundToInt(transform.position);
+        transform.position = _gridPos;
 
         _playerCollider = GetComponent<Collider2D>();
     }
@@ -51,31 +54,57 @@ public class PlayerMovment : MonoBehaviour
         //Testar colisao com paredes
         TestCollisions();
 
+        //Movendo personagem
+        Move();
         
 
 
+    }
 
+    private void Move()
+    {
+        if(!Moving)
+        {
+            if(_playerInputs.x > 0)
+            {
+                _movementQueue.Enqueue(Vector2.right * gridSize);
+            }
+            else if(_playerInputs.x < 0)
+            { 
+                _movementQueue.Enqueue(Vector2.left * gridSize);
+            }
+            if(_playerInputs.y > 0)
+            {
+                _movementQueue.Enqueue(Vector2.up * gridSize);
+            }
+            else if(_playerInputs.y < 0)
+            {
+                _movementQueue.Enqueue(Vector2.down * gridSize);
+            }
+            StartCoroutine("DoMove");
+        }
     }
 
     private void TestCollisions()
     {
         if(!_moving)
         {
-        if(_playerInputs.x != 0)
-        {
-            if(_playerInputs.x > 0)
-                _movementQueue.Enqueue(Vector2.right);
-            else
-                _movementQueue.Enqueue(Vector2.left);
-        }
-        if(_playerInputs.y != 0)
-        {
-            if(_playerInputs.y > 0)
-                _movementQueue.Enqueue(Vector2.up);
-            else
-                _movementQueue.Enqueue(Vector2.down);
-        }
-            StartCoroutine("DoMove");
+            if(_playerInputs.x != 0)
+            {
+                if(Physics2D.OverlapBox(transform.position + (Vector3.right * _playerInputs.x), _playerCollider.bounds.size, 0, groundLayer))
+                {
+                    Debug.Log("A");
+                    _playerInputs.x = 0;
+                }
+            }
+            if(_playerInputs.y != 0)
+            {
+                if(Physics2D.OverlapBox(transform.position + (Vector3.up * _playerInputs.y), _playerCollider.bounds.size, 0, groundLayer))
+                {
+                    _playerInputs.y = 0;
+                }
+            }
+            
         }
         
 
