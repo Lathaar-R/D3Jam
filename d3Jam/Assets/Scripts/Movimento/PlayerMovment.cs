@@ -32,6 +32,8 @@ public class PlayerMovment : MonoBehaviour
 
     //Proprierties
     public bool Moving { get {return _moving;} }
+    public Vector3 Movement{get; private set;}
+    public Vector3 Direction{get; private set;}
     #endregion
 
 
@@ -93,7 +95,6 @@ public class PlayerMovment : MonoBehaviour
             {
                 if(Physics2D.OverlapBox(transform.position + (Vector3.right * _playerInputs.x), _playerCollider.bounds.size, 0, groundLayer))
                 {
-                    Debug.Log("A");
                     _playerInputs.x = 0;
                 }
             }
@@ -129,7 +130,9 @@ public class PlayerMovment : MonoBehaviour
         while(_movementQueue.Count > 0)
         {
             Vector3 pos = transform.position;
-            Vector3 finish = (Vector3)_movementQueue.Dequeue() + pos;
+            Movement = (Vector3)_movementQueue.Dequeue();
+            Direction = Movement;
+            Vector3 finish = Movement + pos;
 
             while (transform.position != finish)
             {
@@ -141,6 +144,7 @@ public class PlayerMovment : MonoBehaviour
 
         }
 
+        Movement = Vector3.zero;
         _moving = false;
     }
 
