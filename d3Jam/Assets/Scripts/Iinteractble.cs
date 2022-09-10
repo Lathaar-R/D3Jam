@@ -1,7 +1,5 @@
-namespace d3Jam.Assets.Scripts
+
+public interface Iinteractble
 {
-    public interface Iinteractble
-    {
-        public void OnClick();
-    }
+    public void OnClick(PlayerHands player);
 }
