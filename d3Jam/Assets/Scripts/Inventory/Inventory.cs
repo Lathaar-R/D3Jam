@@ -19,17 +19,22 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
+
     #endregion
+
 
     // Callback which is triggered when
     // an item gets added/removed.
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public int space = 20;  // Amount of slots in inventory
+    public int space = 6;  // Amount of slots in inventory
 
     // Current list of items in inventory
     public List<Item> items = new List<Item>();
+
+    //Equiped item reference
+    public Item equipedItem;
 
     // Add a new item. If there is enough room we
     // return true. Else we return false.

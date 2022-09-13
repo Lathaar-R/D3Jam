@@ -23,11 +23,11 @@ public class PlayerAnimation : MonoBehaviour
     
     void Update()
     {
-        if(_movementScript.Movement.x < 0)
+        if(_movementScript.Direction.x < 0)
         {
             _playerSpriteRenderer.flipX = true;
         }
-        else if(_movementScript.Movement.x > 0)
+        else if(_movementScript.Direction.x > 0)
         {
             _playerSpriteRenderer.flipX = false;
         }
@@ -35,7 +35,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void ChangeAnimation(string newState)
     {
-        //Check id animation is already been played
+        //Check if animation is already been played
         if(_currentState == newState) return;
 
         //Play the new animation

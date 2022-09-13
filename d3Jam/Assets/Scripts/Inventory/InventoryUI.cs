@@ -11,6 +11,7 @@ public class InventoryUI : MonoBehaviour
 
     InventorySlot[] slots;  // List of all the slots
 
+
     void Start()
     {
         inventory = Inventory.instance;
@@ -18,6 +19,8 @@ public class InventoryUI : MonoBehaviour
 
         // Populate our slots array
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+
+        inventoryUI.SetActive(false);
     }
 
     void Update()
@@ -25,7 +28,7 @@ public class InventoryUI : MonoBehaviour
         // Check to see if we should open/close the inventory
         if (Input.GetKeyDown(KeyCode.I))
         {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
+            OpenInventory();
         }
     }
 
@@ -48,5 +51,13 @@ public class InventoryUI : MonoBehaviour
                 slots[i].ClearSlot();
             }
         }
+    }
+
+
+    //Function so we can animate the ui later
+    void OpenInventory()
+    {
+
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
     }
 }

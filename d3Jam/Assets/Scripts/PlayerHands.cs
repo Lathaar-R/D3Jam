@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerHands : MonoBehaviour
 {
     PlayerMovment _playerMoveScript;
-
-    public EquippableItens equippedItem;
     
     void Start()
     {
@@ -18,18 +16,15 @@ public class PlayerHands : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            //Debug.Log(_playerMoveScript.Direction);
             Iinteractble intectbleHit;
             
             var hit = Physics2D.Raycast(transform.position, _playerMoveScript.Direction, 1,  1 << 7);
-            //Debug.Log(~gameObject.layer);
             if(hit)
             {
                 if(hit.collider.TryGetComponent<Iinteractble>(out intectbleHit))
                 {
-                    intectbleHit.OnClick(this);
+                    intectbleHit.OnClick();
                 }
-                //Debug.Log(_playerMoveScript.Direction);
                 
             }
         }

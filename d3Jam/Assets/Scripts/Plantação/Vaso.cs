@@ -36,14 +36,9 @@ public class Vaso : MonoBehaviour, Iinteractble
         
     }
 
-    public void OnClick(PlayerHands player)
+    public void OnClick()
     {
-        //Debug.Log("A");
-        if(player.equippedItem.Equals(plantaDoVaso.needsToGrow[plantaDoVaso.stage]))
-        {
-            plantaDoVaso.stage++;
-            _spriteRenderer.sprite = plantaDoVaso.plantSprites[plantaDoVaso.stage];
-        }
+        
     }
 }
 

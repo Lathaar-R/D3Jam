@@ -28,7 +28,7 @@ public class PlayerMovment : MonoBehaviour
     public LayerMask groundLayer;
 
     //Bolleanos de colisao
-    public bool cRight, cLeft, cUp, cDown;
+    //public bool cRight, cLeft, cUp, cDown;
 
     //Proprierties
     public bool Moving { get {return _moving;} }
@@ -118,6 +118,7 @@ public class PlayerMovment : MonoBehaviour
         _playerInputs.x = (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0); 
         _playerInputs.y = (Input.GetKey(KeyCode.W) ? 1 : 0) - (Input.GetKey(KeyCode.S) ? 1 : 0); 
 
+        Direction = new(_playerInputs.x, _playerInputs.y);
         
     }
 
@@ -130,9 +131,7 @@ public class PlayerMovment : MonoBehaviour
         while(_movementQueue.Count > 0)
         {
             Vector3 pos = transform.position;
-            Movement = (Vector3)_movementQueue.Dequeue();
-            Direction = Movement;
-            Vector3 finish = Movement + pos;
+            Vector3 finish = (Vector3)_movementQueue.Dequeue() + pos;
 
             while (transform.position != finish)
             {
@@ -143,8 +142,6 @@ public class PlayerMovment : MonoBehaviour
             }
 
         }
-
-        Movement = Vector3.zero;
         _moving = false;
     }
 
