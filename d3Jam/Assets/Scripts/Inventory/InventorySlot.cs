@@ -7,7 +7,8 @@ using TMPro;
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;          // Reference to the Icon image
-    public Button removeButton;
+    public Sprite EmptyImage;
+    //public Button removeButton;
     //public GameObject itemFocus;
 
     Item item = null;  // Current item in the slot
@@ -29,7 +30,7 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = item.icon;
         icon.enabled = true;
-        removeButton.interactable = true;
+        //removeButton.interactable = true;
     }
 
     // Clear the slot
@@ -37,15 +38,16 @@ public class InventorySlot : MonoBehaviour
     {
         item = null;
 
-        icon.sprite = null;
-        icon.enabled = false;
-        removeButton.interactable = false;
+        icon.sprite = EmptyImage;
+        //icon.enabled = false;
+
+        //removeButton.interactable = false;
     }
 
-    public void OnRemoveButton()
-    {
-        Inventory.instance.Remove(item);
-    }
+    // public void OnRemoveButton()
+    // {
+    //     Inventory.instance.Remove(item);
+    // }
 
     // Called when the item is pressed
     public void UseItem()

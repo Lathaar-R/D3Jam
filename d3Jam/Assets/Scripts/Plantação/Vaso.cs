@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vaso : MonoBehaviour, Iinteractble
+public class Vaso : Interactable
 {
     public Plant plantaDoVaso; 
 

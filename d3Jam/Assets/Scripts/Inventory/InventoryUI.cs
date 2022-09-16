@@ -1,35 +1,63 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;   // The parent object of all the items
     public GameObject inventoryUI;  // The entire UI
+    public GameObject selected;
+    public InventorySlot equipedUI;
 
-    Inventory inventory;    // Our current inventory
+    Vector3 initialSelected;
+    
+
+    //Inventory inventory;    // Our current inventory
 
     InventorySlot[] slots;  // List of all the slots
 
+    private void OnEnable() {
+        Inventory.instance.onItemIChanged += UpdateUI;    // Subscribe to the onItemChanged callback
+        Inventory.instance.onOpenInventory += OnpenInventory;
+        Inventory.instance.onInventoryInteract += OnInventoryInteracted;
+    }
+
+    private void OnDisable() {
+        Inventory.instance.onItemIChanged -= UpdateUI;    // Subscribe to the onItemChanged callback
+        Inventory.instance.onOpenInventory -= OnpenInventory;
+        Inventory.instance.onInventoryInteract -= OnInventoryInteracted;
+    }
 
     void Start()
     {
-        inventory = Inventory.instance;
-        inventory.onItemChangedCallback += UpdateUI;    // Subscribe to the onItemChanged callback
-
-        // Populate our slots array
+        selected.transform.position = new(-1000, -1000);
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
-        inventoryUI.SetActive(false);
+        // Populate our slots array        
+        initialSelected = slots[0].transform.position;
+
+        Invoke("OnpenInventory", Time.fixedDeltaTime);
     }
 
-    void Update()
+    private void Update() {
+        Debug.Log(slots[0].transform.position);
+    }
+
+    private void OnInventoryInteracted()
     {
-        // Check to see if we should open/close the inventory
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            OpenInventory();
-        }
+        if(Inventory.instance.items.Count > 0)
+            selected.transform.position = slots[Inventory.instance.slotPos].transform.position;
+        else
+            selected.transform.position = new(-1000, -1000);
+    }
+
+    private void OnpenInventory()
+    {
+        //Debug.Log("A");
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        
     }
 
     // Update the inventory UI by:
@@ -38,12 +66,28 @@ public class InventoryUI : MonoBehaviour
     // This is called using a delegate on the Inventory.
     void UpdateUI()
     {
+        if(Inventory.instance.equipedItem)
+        {
+            equipedUI.icon.sprite = Inventory.instance.equipedItem.icon;
+        }
+        else
+        {
+            equipedUI.icon.sprite = equipedUI.EmptyImage;
+        }
+
+        if(Inventory.instance.items.Count == 0)
+            selected.transform.position = new(-1000, -1000);
+        else
+            selected.transform.position = slots[0].transform.position;
+
         // Loop through all the slots
         for (int i = 0; i < slots.Length; i++)
         {
-            if (i < inventory.items.Count)  // If there is an item to add
+            if (i < Inventory.instance.items.Count)  // If there is an item to add
             {
-                slots[i].AddItem(inventory.items[i]);   // Add it
+                slots[i].AddItem(Inventory.instance.items[i]);   // Add it
+                Debug.Log(slots[0].transform.position);
+
             }
             else
             {
@@ -53,11 +97,9 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+        
 
-    //Function so we can animate the ui later
-    void OpenInventory()
-    {
+        
 
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
-    }
+
 }

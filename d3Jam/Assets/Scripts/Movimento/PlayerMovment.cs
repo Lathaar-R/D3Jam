@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 public class PlayerMovment : MonoBehaviour
 {
     #region Variables
@@ -13,7 +12,7 @@ public class PlayerMovment : MonoBehaviour
     //private Vector2 _gridDisplacment = new(0.5f, 0.5f);
     private Vector3Int _gridPos = Vector3Int.zero;
     [SerializeField] private float gridSize = 1;
-    [SerializeField] private Inputs _playerInputs;
+    [SerializeField] private Vector2 _playerInputs;
 
     [SerializeField] private Collider2D _playerCollider;    //Player Collider
 
@@ -36,7 +35,7 @@ public class PlayerMovment : MonoBehaviour
     public Vector3 Direction{get; private set;}
     #endregion
 
-
+    public static bool freePlayer = true;
     
     void Start()
     {
@@ -45,11 +44,13 @@ public class PlayerMovment : MonoBehaviour
         transform.position = _gridPos;
 
         _playerCollider = GetComponent<Collider2D>();
+    
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!PlayerMovment.freePlayer) return;
         //Pegar Inputs do jogador
         GetherInputs();
 
@@ -60,6 +61,8 @@ public class PlayerMovment : MonoBehaviour
         Move();
         
 
+        //Debug.Log(Direction);
+        //if(Input.GetKeyDown(KeyCode.Space)) Inventory.instance.;
 
     }
 
@@ -118,7 +121,8 @@ public class PlayerMovment : MonoBehaviour
         _playerInputs.x = (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0); 
         _playerInputs.y = (Input.GetKey(KeyCode.W) ? 1 : 0) - (Input.GetKey(KeyCode.S) ? 1 : 0); 
 
-        Direction = new(_playerInputs.x, _playerInputs.y);
+        if(_playerInputs.sqrMagnitude != 0)
+            Direction = _playerInputs;  
         
     }
 
@@ -147,8 +151,3 @@ public class PlayerMovment : MonoBehaviour
 
 }
 
-[System.Serializable]
-public struct Inputs
-{
-    public int x, y;
-}

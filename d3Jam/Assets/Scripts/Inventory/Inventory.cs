@@ -26,7 +26,13 @@ public class Inventory : MonoBehaviour
     // Callback which is triggered when
     // an item gets added/removed.
     public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallback;
+    public delegate void OnOpenInventory();
+    public delegate void OnInventoryInteract();
+    // Delegate to call when Interact button is pressed
+    public OnItemChanged onItemIChanged;
+    public OnOpenInventory onOpenInventory;
+    public OnInventoryInteract onInventoryInteract;
+
 
     public int space = 6;  // Amount of slots in inventory
 
@@ -35,6 +41,76 @@ public class Inventory : MonoBehaviour
 
     //Equiped item reference
     public Item equipedItem;
+
+    public bool open;
+    public int slotPos;
+    
+    private void Update()
+    {
+        if(PlayerMovment.freePlayer && !open)
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                Invoke("OpenInventory", Time.fixedDeltaTime);
+            }
+        }
+
+        if(open)
+        {
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                slotPos++;
+                slotPos = Mathf.Clamp(slotPos, 0, items.Count - 1);
+                onInventoryInteract?.Invoke();
+            }
+
+            if(Input.GetKeyDown(KeyCode.A)) 
+            {
+                slotPos--;
+                slotPos = Mathf.Clamp(slotPos, 0, items.Count - 1);
+                onInventoryInteract?.Invoke();
+            }
+
+            
+
+            if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                Invoke("CloseInventory", Time.fixedDeltaTime);
+            }
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {         
+                EquipItem(items[slotPos]);
+
+                Invoke("CloseInventory", Time.fixedDeltaTime);
+            }
+        }
+    
+
+        
+    }
+
+    void CloseInventory()
+    {
+        PlayerMovment.freePlayer = true;
+        onOpenInventory?.Invoke();
+        open = false;
+    }
+
+    void OpenInventory()
+    {
+        PlayerMovment.freePlayer = false;
+        onOpenInventory?.Invoke();
+        open = true;
+    }
+
+    // void OpenInventory()
+    // {
+
+    //     PlayerMovment.freePlayer = !PlayerMovment.freePlayer;
+    //     inventoryUI.SetActive(!inventoryUI.activeSelf);
+    //     Inventory.instance.open = !Inventory.instance.open;
+    // }
 
     // Add a new item. If there is enough room we
     // return true. Else we return false.
@@ -50,8 +126,8 @@ public class Inventory : MonoBehaviour
         items.Add(item);    // Add item to list
 
         // Trigger callback
-        if (onItemChangedCallback != null)
-            onItemChangedCallback.Invoke();
+        if (onItemIChanged != null)
+            onItemIChanged.Invoke();
 
         return true;
     }
@@ -62,8 +138,25 @@ public class Inventory : MonoBehaviour
         items.Remove(item);     // Remove item from list
 
         // Trigger callback
-        if (onItemChangedCallback != null)
-            onItemChangedCallback.Invoke();
+        if (onItemIChanged != null)
+            onItemIChanged.Invoke();
     }
+
+    public void EquipItem(Item equipping)
+    {
+        equipedItem = equipping;
+        onItemIChanged?.Invoke();
+    }
+
+    public void UnequipItem()
+    {
+        equipedItem = null;
+        onItemIChanged?.Invoke();
+    }
+    // public void Interact()
+    // {
+    //     onInteractPressed?.Invoke();
+    // }
+
 
 }

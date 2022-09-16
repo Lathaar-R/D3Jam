@@ -11,7 +11,7 @@ public class Plant : ScriptableObject
 
     public PlantType plantType;
     
-    public List<EquippableItens> needsToGrow;
+    //public List<EquippableItens> needsToGrow;
 
     public float growTime;
     public int stage = 0;

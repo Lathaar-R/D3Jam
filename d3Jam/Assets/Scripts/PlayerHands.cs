@@ -4,36 +4,35 @@ using UnityEngine;
 
 public class PlayerHands : MonoBehaviour
 {
-    PlayerMovment _playerMoveScript;
+    Collider2D _playerCollider;
+    PlayerMovment _playerMovement;
+    ContactFilter2D _contactFilter;
+    public LayerMask objectsLayer; 
+    public int gridSize;
+
+    private List<Iinteractable> _colliderResults = new();
     
     void Start()
     {
-        _playerMoveScript = GetComponent<PlayerMovment>();
+        _playerCollider = GetComponent<Collider2D>();
+        _playerMovement = GetComponent<PlayerMovment>();
+
+        _contactFilter.useLayerMask = true;
+        _contactFilter.layerMask = objectsLayer;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && PlayerMovment.freePlayer)
         {
-            Iinteractble intectbleHit;
-            
-            var hit = Physics2D.Raycast(transform.position, _playerMoveScript.Direction, 1,  1 << 7);
+            Iinteractable interactableHit;
+            var hit = Physics2D.BoxCast(transform.position, _playerCollider.bounds.size, 0, _playerMovement.Direction, gridSize, objectsLayer);
             if(hit)
             {
-                if(hit.collider.TryGetComponent<Iinteractble>(out intectbleHit))
-                {
-                    intectbleHit.OnClick();
-                }
-                
+                hit.collider.TryGetComponent<Iinteractable>(out interactableHit);
+                interactableHit.OnInteract();
             }
         }
     }
-}
-
-public enum EquippableItens
-{
-    NONE,
-    luz,
-    agua
 }
