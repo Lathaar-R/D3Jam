@@ -35,15 +35,10 @@ public class InventoryUI : MonoBehaviour
         selected.transform.position = new(-1000, -1000);
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
-        // Populate our slots array        
-        initialSelected = slots[0].transform.position;
 
         Invoke("OnpenInventory", Time.fixedDeltaTime);
     }
 
-    private void Update() {
-        Debug.Log(slots[0].transform.position);
-    }
 
     private void OnInventoryInteracted()
     {
@@ -55,9 +50,10 @@ public class InventoryUI : MonoBehaviour
 
     private void OnpenInventory()
     {
-        //Debug.Log("A");
         inventoryUI.SetActive(!inventoryUI.activeSelf);
-        
+        initialSelected = slots[0].transform.position;
+        Inventory.instance.slotPos = 0;
+
     }
 
     // Update the inventory UI by:
@@ -86,7 +82,6 @@ public class InventoryUI : MonoBehaviour
             if (i < Inventory.instance.items.Count)  // If there is an item to add
             {
                 slots[i].AddItem(Inventory.instance.items[i]);   // Add it
-                Debug.Log(slots[0].transform.position);
 
             }
             else

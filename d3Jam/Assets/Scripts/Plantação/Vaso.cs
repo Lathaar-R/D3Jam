@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vaso : Interactable
+public class Vaso : MonoBehaviour, Iinteractable
 {
     public Plant plantaDoVaso; 
 
@@ -20,6 +20,7 @@ public class Vaso : Interactable
     {
         
     }
+    
 
     public bool PlantOnVase(Plant plant)
     {
@@ -36,9 +37,19 @@ public class Vaso : Interactable
         
     }
 
-    public void OnClick()
+    public void OnInteract()
     {
-        
+        if(Inventory.instance.equipedItem.id == itemType.semente)
+        {
+            var s = Inventory.instance.equipedItem.name;
+
+            switch (s)
+            {
+                // case "Tomate":
+
+                // default:
+            }
+        }
     }
 }
 

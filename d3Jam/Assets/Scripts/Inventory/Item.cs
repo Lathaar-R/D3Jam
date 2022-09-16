@@ -9,7 +9,7 @@ public class Item : ScriptableObject
     new public string name = "New Item";    // Name of the item
     public Sprite icon = null;              // Item icon
     public Sprite sprite = null;
-    public int id;
+    public itemType id;
 
     [TextArea(5, 100)]
     public string description;
@@ -26,4 +26,14 @@ public class Item : ScriptableObject
     {
         Inventory.instance.Remove(this);
     }
+}
+
+[System.Serializable]
+public enum itemType
+{
+    NONE,
+    semente,
+    luz,
+    agua,
+    planta
 }

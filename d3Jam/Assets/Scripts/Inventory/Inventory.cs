@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
     public Item equipedItem;
 
     public bool open;
-    public int slotPos;
+    public int slotPos = 0;
     
     private void Update()
     {
