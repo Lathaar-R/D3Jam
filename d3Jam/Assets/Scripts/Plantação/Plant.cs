@@ -6,15 +6,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "d3Jam/Plant", menuName = "Plant")]
 public class Plant : ScriptableObject 
 {
-    public 
-    Sprite [] plantSprites;
+    public string plantName;
 
-    public PlantType plantType;
+    public Item finishItem;
+
+    public Sprite [] plantSprites;
+
+    //public PlantType plantType;
     
-    //public List<EquippableItens> needsToGrow;
+    public List<string> needsToGrow;
 
     public float growTime;
-    public int stage = 0;
     public int maxStage;
 
 }

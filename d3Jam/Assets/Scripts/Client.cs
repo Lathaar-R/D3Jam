@@ -5,15 +5,23 @@ using UnityEngine;
 public class Client : MonoBehaviour, Iinteractable
 {
     private Collider2D _clientCollider;
+    private SpriteRenderer _wantSprite;
     public Item item;
     public int bonusCoins;
-    public SpriteRenderer itemSprite;
+
+    SpawnerScript _spawner;
+
+    GameObject want;
 
     void Start()
     {
         StartCoroutine("BonusTimer");
         _clientCollider = GetComponent<Collider2D>();
-        itemSprite.sprite = item.icon;
+
+        _wantSprite = GetComponentsInChildren<SpriteRenderer>()[1];
+        _wantSprite.sprite = item.icon;
+
+        _spawner = GameObject.Find("ClientSpawner").GetComponent<SpawnerScript>();
     }
 
     
@@ -25,12 +33,12 @@ public class Client : MonoBehaviour, Iinteractable
 
     public void OnInteract()
     {
-        Debug.Log("Entrou aqui!");
-        if(Inventory.instance.equipedItem.name == item.name)
+        if(Inventory.instance.equipedItem && Inventory.instance.equipedItem.itemName == item.itemName && Inventory.instance.equipedItem.id == itemType.planta)
         {
             Inventory.instance.Remove(Inventory.instance.equipedItem);
             Inventory.instance.UnequipItem();
-            Destroy(gameObject);
+            _spawner.Served();
+            Destroy(gameObject); 
         }
     }
 

@@ -22,6 +22,7 @@ public class InventoryUI : MonoBehaviour
         Inventory.instance.onItemIChanged += UpdateUI;    // Subscribe to the onItemChanged callback
         Inventory.instance.onOpenInventory += OnpenInventory;
         Inventory.instance.onInventoryInteract += OnInventoryInteracted;
+        
     }
 
     private void OnDisable() {
@@ -32,6 +33,8 @@ public class InventoryUI : MonoBehaviour
 
     void Start()
     {
+        
+
         selected.transform.position = new(-1000, -1000);
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
@@ -53,6 +56,8 @@ public class InventoryUI : MonoBehaviour
         inventoryUI.SetActive(!inventoryUI.activeSelf);
         initialSelected = slots[0].transform.position;
         Inventory.instance.slotPos = 0;
+
+        Debug.Log("OPEN");
 
     }
 

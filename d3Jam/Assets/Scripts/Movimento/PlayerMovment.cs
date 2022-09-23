@@ -31,7 +31,16 @@ public class PlayerMovment : MonoBehaviour
 
     //Proprierties
     public bool Moving { get {return _moving;} }
-    public Vector3 Movement{get; private set;}
+    public bool Movement{
+        get 
+        {
+            return _moving || _playerInputs.sqrMagnitude > 0;
+        }
+        private set
+        {
+
+        }
+        }
     public Vector3 Direction{get; private set;}
     #endregion
 

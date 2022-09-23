@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1066878187222974421}
   - component: {fileID: 1066878187222974423}
   - component: {fileID: 1066878187222974422}
-  - component: {fileID: 1781366223}
   - component: {fileID: 1781366224}
-  - component: {fileID: 1781366225}
+  - component: {fileID: 1691718947}
+  - component: {fileID: 1691718954}
+  - component: {fileID: 1769451539}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -78,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a5619dbfc6b766c458291f1662bd1b19, type: 3}
+  m_Sprite: {fileID: -2099564501, guid: 6e3224c81b6e5fa45af7b4a1081ec9c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3333334, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -107,7 +108,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.25}
     oldSize: {x: 1.3333334, y: 1.3333334}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.3333334, y: 1.3333334}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -128,19 +129,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 1
-  _playerInputs:
-    x: 0
-    y: 0
+  _playerInputs: {x: 0, y: 0}
   _playerCollider: {fileID: 0}
   walkSpeed: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 192
-  cRight: 0
-  cLeft: 0
-  cUp: 0
-  cDown: 0
---- !u!95 &1781366223
+    m_Bits: 448
+--- !u!114 &1781366224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066878187222974418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4255c06805e000c4d86f60737b8883b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animations:
+  - Idle
+  - Walking
+--- !u!114 &1691718947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066878187222974418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc0a73d00da731489f17d2cdf69895a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  grabLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  gridSize: 1
+--- !u!114 &1691718954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066878187222974418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361570cf93b5304479ed80450f058975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
+  space: 6
+  items: []
+  equipedItem: {fileID: 0}
+  open: 0
+  slotPos: 0
+--- !u!95 &1769451539
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -160,27 +207,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1781366224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066878187222974418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4255c06805e000c4d86f60737b8883b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1781366225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066878187222974418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbc0a73d00da731489f17d2cdf69895a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

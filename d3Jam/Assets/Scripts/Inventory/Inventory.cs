@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
 
     public static Inventory instance;
 
+    public GameObject inventoryUI;
     void Awake()
     {
         if (instance != null)
@@ -17,10 +18,17 @@ public class Inventory : MonoBehaviour
         }
 
         instance = this;
+        //Debug.Log(Inventory.instance.gameObject.name);
     }
 
 
     #endregion
+
+    private void Start() {
+
+        inventoryUI.SetActive(false);
+        inventoryUI.SetActive(true);
+    }
 
 
     // Callback which is triggered when
@@ -41,6 +49,7 @@ public class Inventory : MonoBehaviour
 
     //Equiped item reference
     public Item equipedItem;
+    //public Carry equippedCarry;
 
     public bool open;
     public int slotPos = 0;
@@ -80,6 +89,7 @@ public class Inventory : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Space))
             {         
+                //Cannot equip with bucket in hand
                 EquipItem(items[slotPos]);
 
                 Invoke("CloseInventory", Time.fixedDeltaTime);
@@ -144,6 +154,7 @@ public class Inventory : MonoBehaviour
 
     public void EquipItem(Item equipping)
     {
+        
         equipedItem = equipping;
         onItemIChanged?.Invoke();
     }
@@ -153,6 +164,7 @@ public class Inventory : MonoBehaviour
         equipedItem = null;
         onItemIChanged?.Invoke();
     }
+    
     // public void Interact()
     // {
     //     onInteractPressed?.Invoke();

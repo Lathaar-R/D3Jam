@@ -6,6 +6,9 @@ public class DataManager : MonoBehaviour
 {
     
     public static DataManager instance;
+    public List<Plant> plantsReferences;
+
+    
 
     private void Awake()
     {
@@ -18,5 +21,7 @@ public class DataManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    
 
 }

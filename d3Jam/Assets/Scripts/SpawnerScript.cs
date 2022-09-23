@@ -5,10 +5,11 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour
 {
     public int clientNumber;
+    public GameObject clientDemo;
 
     void Start()
     {
-        InvokeRepeating("SpawnTimer", 5, 5);
+        InvokeRepeating("SpawnTimer", 1, 5);
     }
 
 
@@ -18,10 +19,15 @@ public class SpawnerScript : MonoBehaviour
     }
     void SpawnTimer()
     {
-        if (clientNumber > 0)
+        if (clientNumber == 0)
         {
-            clientNumber--;
-            //Instantiate<Client> (new Client(), new Vector3(-7, 2, 0));
+            clientNumber++;
+            Instantiate<GameObject>(clientDemo, new(-7, 0, 0), Quaternion.identity);
         }
+    }
+
+    public void Served()
+    {
+        clientNumber = 0;
     }
 }

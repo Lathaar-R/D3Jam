@@ -1,13 +1,8 @@
-public class PlantTypes
-{
-    
-}
-
-[System.Serializable]
-    public enum PlantType
-    {
-        NULL,
-        Milho,
-        Rato,
-        Gaviao
-    }
+// [System.Serializable]
+//     public enum PlantType
+//     {
+//         NULL,
+//         Milho,
+//         Rato,
+//         Gaviao
+//     }

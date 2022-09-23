@@ -8,6 +8,8 @@ public class PlayerAnimation : MonoBehaviour
     PlayerMovment _movementScript;
     SpriteRenderer _playerSpriteRenderer;
     string _currentState;
+
+    public List<string> animations; 
     void Start()
     {
         _playerSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,6 +33,15 @@ public class PlayerAnimation : MonoBehaviour
         {
             _playerSpriteRenderer.flipX = false;
         }
+
+        if(_movementScript.Movement)
+        {
+            _playerAnimator.SetInteger("Speed", 1);
+        }
+        else
+        {
+            _playerAnimator.SetInteger("Speed", 0);
+        }
     }
 
     void ChangeAnimation(string newState)
@@ -43,5 +54,7 @@ public class PlayerAnimation : MonoBehaviour
 
         //Update the current state
         _currentState = newState;
+        Debug.Log("Change");
     }
+
 }

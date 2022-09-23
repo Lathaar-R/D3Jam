@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,14 @@ using UnityEngine;
 public class Vaso : MonoBehaviour, Iinteractable
 {
     public Plant plantaDoVaso; 
+    public Sprite baseSprite;
 
     private SpriteRenderer _spriteRenderer;
+
+    bool readyPlant;
+    float growing;
+
+    int stage = 0;
 
     
     void Start()
@@ -18,7 +25,30 @@ public class Vaso : MonoBehaviour, Iinteractable
     
     void Update()
     {
-        
+       if(!readyPlant)
+       {
+            if(plantaDoVaso)
+                if((plantaDoVaso.needsToGrow[stage] == "Luz") && Physics2D.OverlapBox(transform.position, Vector2.one, 0, LayerMask.NameToLayer("Light")))
+                {
+                    growing += Time.deltaTime;
+                    Debug.Log("Luz na planta");
+
+                    if(growing >= plantaDoVaso.growTime)
+                    {
+
+                        Debug.Log("Planta finalizada!");
+
+                        readyPlant = true;
+
+                        _spriteRenderer.sprite = plantaDoVaso.plantSprites[++stage];
+                        
+                    }
+                }
+       }
+       else
+       {
+            
+       }
     }
     
 
@@ -28,7 +58,7 @@ public class Vaso : MonoBehaviour, Iinteractable
         {
             plantaDoVaso = plant;
 
-            _spriteRenderer.sprite = plantaDoVaso.plantSprites[0];
+            _spriteRenderer.sprite = plantaDoVaso.plantSprites[stage];
 
             return true;
         }
@@ -37,19 +67,66 @@ public class Vaso : MonoBehaviour, Iinteractable
         
     }
 
+    void UpgradePlant()
+    {
+        stage++;
+
+        _spriteRenderer.sprite = plantaDoVaso.plantSprites[stage];
+    }
+
     public void OnInteract()
     {
-        if(Inventory.instance.equipedItem.id == itemType.semente)
+        if(readyPlant)
         {
-            var s = Inventory.instance.equipedItem.name;
-
-            switch (s)
+            if(Inventory.instance.items.Count <= Inventory.instance.space)
             {
-                // case "Tomate":
+                Inventory.instance.Add(plantaDoVaso.finishItem);
+                _spriteRenderer.sprite = baseSprite;
+                plantaDoVaso = null;
+            }
 
-                // default:
+            return;
+        }        
+
+
+        Debug.Log("interagindo com o vaso");
+        if(Inventory.instance.equipedItem == null) return;
+
+        if(plantaDoVaso == null)
+        {
+            Debug.Log("Tentando Plantar");
+            if(Inventory.instance.equipedItem.id == itemType.semente)
+            {
+                Debug.Log("Plantando");
+                var itemEquipped = Inventory.instance.equipedItem;
+                var plant = DataManager.instance.plantsReferences.First(obj => obj.plantName == itemEquipped.itemName);
+                
+                Inventory.instance.UnequipItem();
+                Inventory.instance.Remove(itemEquipped);
+
+                PlantOnVase(plant);
+                stage = 0;
             }
         }
+        else
+        {
+
+            if(Inventory.instance.equipedItem.itemName.Equals(plantaDoVaso.needsToGrow[stage]))
+            {
+                Debug.Log("Crescendo a planta");
+
+                Inventory.instance.Remove(Inventory.instance.equipedItem);
+                Inventory.instance.UnequipItem();
+                
+
+                UpgradePlant();
+            }
+            
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        
     }
 }
 

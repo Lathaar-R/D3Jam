@@ -6,7 +6,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
 
-    new public string name = "New Item";    // Name of the item
+    public string itemName = "New Item";    // Name of the item
     public Sprite icon = null;              // Item icon
     public Sprite sprite = null;
     public itemType id;
@@ -33,7 +33,8 @@ public enum itemType
 {
     NONE,
     semente,
-    luz,
     agua,
-    planta
+    luz,
+    planta,
+    animal
 }
