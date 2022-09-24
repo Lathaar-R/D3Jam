@@ -5,6 +5,8 @@ using UnityEngine;
 public class WellScript : MonoBehaviour, Iinteractable
 {
     [SerializeField] Item water;
+    [SerializeField] int waterTime;
+    
 
     public void OnInteract()
     {
@@ -16,7 +18,7 @@ public class WellScript : MonoBehaviour, Iinteractable
 
             PlayerMovment.freePlayer = false;
 
-            Invoke("finishWater", 1);
+            Invoke("finishWater", waterTime);
         }
     }
 
@@ -24,4 +26,6 @@ public class WellScript : MonoBehaviour, Iinteractable
     {
         PlayerMovment.freePlayer = true;
     }
+
+    
 }

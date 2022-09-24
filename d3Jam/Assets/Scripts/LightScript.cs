@@ -7,6 +7,7 @@ public class LightScript : MonoBehaviour
 {
     public int radius;
     Collider2D _lightCollider;
+    [SerializeField] LayerMask playerLayer;
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class LightScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.L) && PlayerMovment.freePlayer)
         {
-            if(Physics2D.OverlapBox(transform.position, _lightCollider.bounds.size, 0, LayerMask.NameToLayer("Player")))
+            if(Physics2D.OverlapBox(transform.position, _lightCollider.bounds.size, 0, playerLayer))
             {
                 if(transform.parent == null)
                     PickLantern();

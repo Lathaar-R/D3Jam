@@ -7,7 +7,12 @@ public class ChestScript : MonoBehaviour, Iinteractable
     private Collider2D _chestCollider;
     private List<Collider2D> _overlapResults = new();
     private List<Item> _chestItems = new();
+
+    private SpriteRenderer _spriteRenderer;
     
+    public int coolDown;
+    bool cool;
+
     public Item[] chestItems;
     private InventorySlot[] _chestSlots;
     public int slotPos = 0;
@@ -16,15 +21,25 @@ public class ChestScript : MonoBehaviour, Iinteractable
     //[SerializeField] ContactFilter2D _contactFilter;
     [SerializeField] private GameObject itemsParent;
     [SerializeField] private GameObject selection;
+    [SerializeField] private GameObject chestUI;
 
 
     void Start()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        var canvas = GameObject.Find("Canvas");
+
+        chestUI = Instantiate<GameObject>(chestUI, canvas.transform);
+
+        itemsParent = GameObject.Find("BuyItensParent");
+        selection = GameObject.Find("SelectChest");
+
         _chestCollider = GetComponent<Collider2D>();
 
         _chestSlots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
-        itemsParent.SetActive(false);
+        Invoke(nameof(CloseMenu), Time.fixedDeltaTime);
 
         int i = 0;
         foreach (var item in _chestSlots)
@@ -43,7 +58,7 @@ public class ChestScript : MonoBehaviour, Iinteractable
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            CloseMenu();
+            Invoke("CloseMenu", Time.fixedDeltaTime);
         }
 
         if(Input.GetKeyDown(KeyCode.D)) slotPos++;
@@ -59,6 +74,7 @@ public class ChestScript : MonoBehaviour, Iinteractable
         
             Inventory.instance.Add(item);
             Invoke("CloseMenu", Time.fixedDeltaTime);
+            StartCoroutine(nameof(ChestCooldown));
         }
     
 
@@ -77,6 +93,7 @@ public class ChestScript : MonoBehaviour, Iinteractable
 
     public void OnInteract()
     {
+        if(cool) return;
         Invoke("ActivateMenu", Time.fixedDeltaTime);
         open = true;
     }
@@ -91,5 +108,16 @@ public class ChestScript : MonoBehaviour, Iinteractable
     void UpdateUi()
     {
         selection.transform.position = _chestSlots[slotPos].transform.position;
+    }
+
+    IEnumerator ChestCooldown()
+    {
+        cool = true;
+        _spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f);
+
+        yield return new WaitForSecondsRealtime(coolDown);
+
+        _spriteRenderer.color = Color.white;
+        cool = false;
     }
 }

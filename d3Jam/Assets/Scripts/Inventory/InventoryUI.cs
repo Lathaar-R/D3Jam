@@ -9,6 +9,7 @@ public class InventoryUI : MonoBehaviour
     public Transform itemsParent;   // The parent object of all the items
     public GameObject inventoryUI;  // The entire UI
     public GameObject selected;
+    public GameObject equiped;
     public InventorySlot equipedUI;
 
     Vector3 initialSelected;
@@ -18,28 +19,36 @@ public class InventoryUI : MonoBehaviour
 
     InventorySlot[] slots;  // List of all the slots
 
-    private void OnEnable() {
+    private void Awake() {
         Inventory.instance.onItemIChanged += UpdateUI;    // Subscribe to the onItemChanged callback
         Inventory.instance.onOpenInventory += OnpenInventory;
         Inventory.instance.onInventoryInteract += OnInventoryInteracted;
+    }
+
+    private void OnEnable() {
+        
         
     }
 
-    private void OnDisable() {
+    private void OnDestroy() {
+        
         Inventory.instance.onItemIChanged -= UpdateUI;    // Subscribe to the onItemChanged callback
         Inventory.instance.onOpenInventory -= OnpenInventory;
         Inventory.instance.onInventoryInteract -= OnInventoryInteracted;
+        
     }
 
     void Start()
     {
-        
+        var canvas = GameObject.Find("Canvas");
+        equiped = Instantiate<GameObject>(equiped, canvas.transform);
+        equipedUI = equiped.GetComponentInChildren<InventorySlot>();
 
         selected.transform.position = new(-1000, -1000);
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
 
-        Invoke("OnpenInventory", Time.fixedDeltaTime);
+        //Invoke("OnpenInventory", Time.fixedDeltaTime);
     }
 
 
@@ -53,11 +62,11 @@ public class InventoryUI : MonoBehaviour
 
     private void OnpenInventory()
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        gameObject.SetActive(!gameObject.activeSelf);
         initialSelected = slots[0].transform.position;
         Inventory.instance.slotPos = 0;
 
-        Debug.Log("OPEN");
+        //Debug.Log("OPEN");
 
     }
 

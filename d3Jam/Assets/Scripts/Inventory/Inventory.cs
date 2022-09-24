@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
 
     public GameObject inventoryUI;
+    //public Canvas mainCanvas;
     void Awake()
     {
         if (instance != null)
@@ -26,8 +27,14 @@ public class Inventory : MonoBehaviour
 
     private void Start() {
 
-        inventoryUI.SetActive(false);
+        var canvas = GameObject.Find("Canvas");
+
+        inventoryUI = Instantiate<GameObject>(inventoryUI, canvas.transform);
+        
+        
         inventoryUI.SetActive(true);
+
+        Invoke(nameof(CloseInventory), Time.fixedDeltaTime);
     }
 
 
@@ -92,6 +99,15 @@ public class Inventory : MonoBehaviour
                 //Cannot equip with bucket in hand
                 EquipItem(items[slotPos]);
 
+                Invoke("CloseInventory", Time.fixedDeltaTime);
+            }
+
+            if(Input.GetKeyDown(KeyCode.H))
+            {
+                if(equipedItem == items[slotPos])
+                    UnequipItem();
+
+                Remove(items[slotPos]);
                 Invoke("CloseInventory", Time.fixedDeltaTime);
             }
         }

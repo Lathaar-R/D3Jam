@@ -18,13 +18,20 @@ public class GameManagerScript : MonoBehaviour
 
     //private fields
     private int _coins;
-    GameObject vasoPrefab;
     List<GameObject> vasos;
 
     [SerializeField] Vector3 startPos;
     [SerializeField] Vector3[] vasosPos;
     [SerializeField] Light2D globalLight;
     //[SerializeField] GameObject inventoryUI;
+
+    [Header("Criacao do Level")]
+    [SerializeField] GameObject _vasoPrefab;
+    [SerializeField] Vector3 _inicialPlayerPos;
+    [SerializeField] Vector3 _inicialLightPos;
+    [SerializeField] List<GameObject> _sceneObjects;
+
+
 
     private void Awake()
     {
@@ -41,15 +48,12 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         
-
+        CreateLevel();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            StartCoroutine(nameof(RestartLevel));
-        }
+        
     }
 
     public int getCoins()
@@ -57,7 +61,30 @@ public class GameManagerScript : MonoBehaviour
         return _coins;
     }
 
-    public IEnumerator RestartLevel()
+    void CreateLevel()
+    {
+        CreateVase();
+
+        InstantiateObjects();
+    }
+
+    void CreateVase()
+    {
+        for(int i = 0; i < vasosPos.Length; i++)
+        {
+            Instantiate<GameObject>(_vasoPrefab, vasosPos[i], Quaternion.identity);
+        }
+    }
+
+    void InstantiateObjects()
+    {
+        foreach (var item in _sceneObjects)
+        {
+            Instantiate<GameObject>(item, item.transform.position, Quaternion.identity);
+        }
+    }
+
+    public IEnumerator FadeOut(int time)
     {
         Color c = Color.black;
         c.a = 0;
@@ -65,31 +92,50 @@ public class GameManagerScript : MonoBehaviour
         {
             c.a += fadeToBlackTime * Time.deltaTime;
             fadeOutImage.color = c;
-            yield return new WaitForSecondsRealtime(deactivateUIsTime);
+            yield return new WaitForEndOfFrame();
         }
 
-        // while (globalLight.intensity > 0)
-        // {
-        //     globalLight.intensity -= fadeToBlackTime * Time.deltaTime;
-
-        //     yield return new WaitForEndOfFrame();
-        // }
-
-        SceneManager.LoadScene("BaseScene", LoadSceneMode.Single);
     }
-
-    public void BuildVasos()
+    public IEnumerator FadeIn(int time)
     {
-        foreach (var pos in vasosPos)
+        Color c = Color.black;
+        c.a = 255;
+        while(fadeOutImage.color.a > 0)
         {
-            vasos.Add(Instantiate<GameObject>(vasoPrefab, pos, Quaternion.identity));
+            c.a -= fadeToBlackTime * Time.deltaTime;
+            fadeOutImage.color = c;
+            yield return new WaitForEndOfFrame();
         }
     }
+        
+
+    // public IEnumerator RestartLevel()
+    // {
+    //     // Color c = Color.black;
+    //     // c.a = 0;
+    //     // while(fadeOutImage.color.a < 255)
+    //     // {
+    //     //     c.a += fadeToBlackTime * Time.deltaTime;
+    //     //     fadeOutImage.color = c;
+    //     //     yield return new WaitForSecondsRealtime(deactivateUIsTime);
+    //     // }
+
+    //     // while (globalLight.intensity > 0)
+    //     // {
+    //     //     globalLight.intensity -= fadeToBlackTime * Time.deltaTime;
+
+    //     //     yield return new WaitForEndOfFrame();
+    //     // }
+
+    //     SceneManager.LoadScene("BaseScene", LoadSceneMode.Single);
+    // }
 
     public void ActivateUIs()
     {
         
     }
+
+    
 
     
 }
