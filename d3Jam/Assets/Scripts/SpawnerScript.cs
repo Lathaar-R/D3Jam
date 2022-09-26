@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
 {
-    public int clientNumber;
-    public GameObject clientDemo;
+
+    public int maxSpawnTime;
+    public int minSpawnTime;
+    public GameObject clientPrefab;
+
+    public List<GameObject> spawnAreas;
+
+    public List<Vector3> clientPos;
 
     void Start()
     {
-        InvokeRepeating("SpawnTimer", 1, 5);
+        
     }
 
 
@@ -17,17 +23,30 @@ public class SpawnerScript : MonoBehaviour
     {
 
     }
-    void SpawnTimer()
+
+    public void StartSpawning()
     {
-        if (clientNumber == 0)
-        {
-            clientNumber++;
-            Instantiate<GameObject>(clientDemo, new(-7, 0, 0), Quaternion.identity);
-        }
+        InvokeRepeating(nameof(Spawn), Random.Range(minSpawnTime, maxSpawnTime) ,Random.Range(minSpawnTime, maxSpawnTime));
+    }
+
+    void Spawn()
+    {
+        int place = Random.Range(1, 5) * 2;
+        Vector3 pos = Vector3.zero;
+        // do
+        // {
+        pos = Vector3.Lerp(spawnAreas[place].transform.position, spawnAreas[place - 1].transform.position, Random.value);
+        
+        //pos = Vector3Int.RoundToInt(pos);
+        Debug.Log(pos);
+        // }while(!clientPos.Contains(pos));
+        Instantiate<GameObject>(clientPrefab, pos, Quaternion.identity);
+
+        clientPos.Add(pos);
     }
 
     public void Served()
     {
-        clientNumber = 0;
+        
     }
 }

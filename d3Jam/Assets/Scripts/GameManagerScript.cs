@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+    public SpawnerScript spawnerScript;
+
     public Image fadeOutImage;
 
     public static GameManagerScript instance;
@@ -49,6 +51,8 @@ public class GameManagerScript : MonoBehaviour
     {
         
         CreateLevel();
+
+        spawnerScript.StartSpawning();
     }
 
     void Update()
