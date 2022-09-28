@@ -8,6 +8,13 @@ public class DataManager : MonoBehaviour
     public static DataManager instance;
     public List<Plant> plantsReferences;
 
+    [SerializeField] int level = 1;
+    public LevelParameters LevelInfo
+    {
+        get{return levels[level - 1];}
+    }
+    public List<LevelParameters> levels;
+
     
 
     private void Awake()

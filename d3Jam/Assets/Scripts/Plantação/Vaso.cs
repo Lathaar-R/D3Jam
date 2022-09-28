@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Vaso : MonoBehaviour, Iinteractable
 {
+    public bool usable;
     public Plant plantaDoVaso; 
     public Sprite baseSprite;
 
@@ -76,6 +77,7 @@ public class Vaso : MonoBehaviour, Iinteractable
 
     public void OnInteract()
     {
+        if(!usable) return;
         if(readyPlant)
         {
             if(Inventory.instance.items.Count <= Inventory.instance.space)
@@ -125,8 +127,11 @@ public class Vaso : MonoBehaviour, Iinteractable
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        
+    public void TurnOnVase()
+    {
+        usable = true;
+
+
     }
 }
 

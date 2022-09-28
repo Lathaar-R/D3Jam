@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
 {
-
-    public int maxSpawnTime;
-    public int minSpawnTime;
     public GameObject clientPrefab;
 
     public List<GameObject> spawnAreas;
 
+    public List<GameObject> clients;
     public List<Vector3> clientPos;
+
+    Vector3[] direction = {Vector3.down, Vector3.right, Vector3.up, Vector3.left};
 
     void Start()
     {
@@ -26,27 +26,51 @@ public class SpawnerScript : MonoBehaviour
 
     public void StartSpawning()
     {
-        InvokeRepeating(nameof(Spawn), Random.Range(minSpawnTime, maxSpawnTime) ,Random.Range(minSpawnTime, maxSpawnTime));
+        InvokeRepeating(nameof(Spawn), DataManager.instance.LevelInfo.timeToSpawnFirstClient , DataManager.instance.LevelInfo.timeToSpawnClients);
+
+
+    }
+
+    public void StopSpawning()
+    {
+        CancelInvoke();
     }
 
     void Spawn()
     {
-        int place = Random.Range(1, 5) * 2;
-        Vector3 pos = Vector3.zero;
-        // do
-        // {
-        pos = Vector3.Lerp(spawnAreas[place].transform.position, spawnAreas[place - 1].transform.position, Random.value);
-        
-        //pos = Vector3Int.RoundToInt(pos);
-        Debug.Log(pos);
-        // }while(!clientPos.Contains(pos));
-        Instantiate<GameObject>(clientPrefab, pos, Quaternion.identity);
+        Vector3 pos;
+        int place;
+        do
+        {
+            place = Random.Range(0, 4) * 2;
+            pos = spawnAreas[place].transform.position;
+            Vector3 dist = spawnAreas[place + 1].transform.position - spawnAreas[place].transform.position;
+            
+            pos += dist * Random.value;
+            pos = Vector3Int.RoundToInt(pos);
+            
+        }while(clientPos.Contains(pos));
+
+        var c = Instantiate<GameObject>(clientPrefab, pos, Quaternion.identity);
+        c.GetComponent<Client>().dir = direction[place / 2];
+        clients.Add(c);
 
         clientPos.Add(pos);
+
+        if(clients.Count >= DataManager.instance.LevelInfo.numberOfClients)
+        {
+            StopSpawning();
+        }
     }
 
     public void Served()
     {
         
+    }
+
+    public void ResetClients()
+    {
+        clientPos.Clear();
+        clients.Clear();
     }
 }

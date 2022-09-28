@@ -8,6 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+
+    
+    string gameState;
+
+    
+
     public SpawnerScript spawnerScript;
 
     public Image fadeOutImage;
@@ -49,6 +55,7 @@ public class GameManagerScript : MonoBehaviour
 
     void Start()
     {
+
         
         CreateLevel();
 
@@ -59,6 +66,21 @@ public class GameManagerScript : MonoBehaviour
     {
         
     }
+
+    void ChangeGameState(string state)
+    {
+        if(state == gameState) return;
+
+        switch (state)
+        {
+            case "play": 
+                        CreateLevel();
+                        break;
+            
+        }
+    }
+
+
 
     public int getCoins()
     {
