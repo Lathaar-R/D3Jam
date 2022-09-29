@@ -11,6 +11,10 @@ public class Item : ScriptableObject
     public Sprite sprite = null;
     public itemType id;
 
+    [Header("Parametros de items para entraga")]
+    public int coins;
+    public int time;
+
     [TextArea(5, 100)]
     public string description;
 

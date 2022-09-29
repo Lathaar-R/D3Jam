@@ -51,7 +51,9 @@ public class ChestScript : MonoBehaviour, Iinteractable
     }
 
 
-    
+    private void OnDestroy() {
+        Destroy(chestUI);
+    }
     void Update()
     {
         if(PlayerMovment.freePlayer || !open) return;

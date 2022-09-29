@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
-
-    
     string gameState;
 
     
@@ -25,7 +23,6 @@ public class GameManagerScript : MonoBehaviour
 
 
     //private fields
-    private int _coins;
     List<GameObject> vasos;
 
     [SerializeField] Vector3 startPos;
@@ -38,6 +35,8 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] Vector3 _inicialPlayerPos;
     [SerializeField] Vector3 _inicialLightPos;
     [SerializeField] List<GameObject> _sceneObjects;
+
+    public List<GameObject> _objectsOfScene;
 
 
 
@@ -80,13 +79,6 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-
-
-    public int getCoins()
-    {
-        return _coins;
-    }
-
     void CreateLevel()
     {
         CreateVase();
@@ -98,7 +90,7 @@ public class GameManagerScript : MonoBehaviour
     {
         for(int i = 0; i < vasosPos.Length; i++)
         {
-            Instantiate<GameObject>(_vasoPrefab, vasosPos[i], Quaternion.identity);
+            _objectsOfScene.Add(Instantiate<GameObject>(_vasoPrefab, vasosPos[i], Quaternion.identity));
         }
     }
 
@@ -106,7 +98,7 @@ public class GameManagerScript : MonoBehaviour
     {
         foreach (var item in _sceneObjects)
         {
-            Instantiate<GameObject>(item, item.transform.position, Quaternion.identity);
+            _objectsOfScene.Add(Instantiate<GameObject>(item, item.transform.position, Quaternion.identity));
         }
     }
 
@@ -114,9 +106,11 @@ public class GameManagerScript : MonoBehaviour
     {
         Color c = Color.black;
         c.a = 0;
-        while(fadeOutImage.color.a < 255)
+        while(c.a < 1)
         {
-            c.a += fadeToBlackTime * Time.deltaTime;
+            Debug.Log("Fade");
+
+            c.a += fadeToBlackTime * (Time.deltaTime / time);
             fadeOutImage.color = c;
             yield return new WaitForEndOfFrame();
         }
@@ -135,33 +129,22 @@ public class GameManagerScript : MonoBehaviour
     }
         
 
-    // public IEnumerator RestartLevel()
-    // {
-    //     // Color c = Color.black;
-    //     // c.a = 0;
-    //     // while(fadeOutImage.color.a < 255)
-    //     // {
-    //     //     c.a += fadeToBlackTime * Time.deltaTime;
-    //     //     fadeOutImage.color = c;
-    //     //     yield return new WaitForSecondsRealtime(deactivateUIsTime);
-    //     // }
-
-    //     // while (globalLight.intensity > 0)
-    //     // {
-    //     //     globalLight.intensity -= fadeToBlackTime * Time.deltaTime;
-
-    //     //     yield return new WaitForEndOfFrame();
-    //     // }
-
-    //     SceneManager.LoadScene("BaseScene", LoadSceneMode.Single);
-    // }
-
-    public void ActivateUIs()
+    public void EndLevel()
     {
+        PlayerMovment.freePlayer = false;
+        StartCoroutine(nameof(FadeOut), 5);
         
+        
+        Invoke(nameof(DestroyAll), 5);
     }
 
-    
-
+    void DestroyAll()
+    {
+        Debug.Log("Destroy");
+        foreach (var obj in _objectsOfScene)
+        {
+            Destroy(obj);
+        }
+    }
     
 }

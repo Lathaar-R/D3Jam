@@ -101,8 +101,8 @@ MonoBehaviour:
   coolDown: 5
   chestItems:
   - {fileID: 11400000, guid: a29ffadc0009ef84d964162e77b7958a, type: 2}
-  - {fileID: 11400000, guid: 8f7c1a2fd9877f24e99ae81297dde893, type: 2}
-  - {fileID: 11400000, guid: 33b8146c233c34b4d9fa632e4bb76637, type: 2}
+  - {fileID: 11400000, guid: 46a78b2751095aa45852ca9f11b11a28, type: 2}
+  - {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}
   - {fileID: 11400000, guid: 33b8146c233c34b4d9fa632e4bb76637, type: 2}
   - {fileID: 11400000, guid: 2816d855c8f19c94a970f8c5b9af0a0f, type: 2}
   - {fileID: 11400000, guid: 2816d855c8f19c94a970f8c5b9af0a0f, type: 2}

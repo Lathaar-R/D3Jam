@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    
+    public Action addCoinCallback;
+    private int _coins;
     public static DataManager instance;
     public List<Plant> plantsReferences;
+    public List<Item> itemList;
+
+    public GameObject coinsObject;
 
     [SerializeField] int level = 1;
     public LevelParameters LevelInfo
@@ -29,6 +34,20 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    
+    private void Start() 
+    {
+        coinsObject = Instantiate<GameObject>(coinsObject, GameObject.Find("Canvas").transform);
+    }
+
+    public int GetCoins()
+    {
+        return _coins;
+    }
+
+    public void AddCoin(int coins)
+    {
+        _coins += coins;
+        addCoinCallback?.Invoke();
+    }
 
 }

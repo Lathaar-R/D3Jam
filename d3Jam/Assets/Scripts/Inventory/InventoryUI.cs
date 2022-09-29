@@ -25,17 +25,11 @@ public class InventoryUI : MonoBehaviour
         Inventory.instance.onInventoryInteract += OnInventoryInteracted;
     }
 
-    private void OnEnable() {
-        
-        
-    }
-
     private void OnDestroy() {
-        
         Inventory.instance.onItemIChanged -= UpdateUI;    // Subscribe to the onItemChanged callback
         Inventory.instance.onOpenInventory -= OnpenInventory;
         Inventory.instance.onInventoryInteract -= OnInventoryInteracted;
-        
+        Destroy(equiped);
     }
 
     void Start()

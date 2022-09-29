@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Vaso : MonoBehaviour, Iinteractable
 {
-    public bool usable;
     public Plant plantaDoVaso; 
     public Sprite baseSprite;
 
@@ -14,7 +13,7 @@ public class Vaso : MonoBehaviour, Iinteractable
     bool readyPlant;
     float growing;
 
-    int stage = 0;
+    public int stage = 0;
 
     
     void Start()
@@ -36,12 +35,7 @@ public class Vaso : MonoBehaviour, Iinteractable
 
                     if(growing >= plantaDoVaso.growTime)
                     {
-
-                        Debug.Log("Planta finalizada!");
-
-                        readyPlant = true;
-
-                        _spriteRenderer.sprite = plantaDoVaso.plantSprites[++stage];
+                        UpgradePlant();
                         
                     }
                 }
@@ -70,14 +64,20 @@ public class Vaso : MonoBehaviour, Iinteractable
 
     void UpgradePlant()
     {
-        stage++;
+        ++stage;
 
+        //Debug.Log(stage);
         _spriteRenderer.sprite = plantaDoVaso.plantSprites[stage];
+        if(stage >= plantaDoVaso.needsToGrow.Count)
+        {
+            Debug.Log("Planta finalizada!");
+            readyPlant = true;
+        }
     }
 
     public void OnInteract()
     {
-        if(!usable) return;
+        
         if(readyPlant)
         {
             if(Inventory.instance.items.Count <= Inventory.instance.space)
@@ -85,6 +85,8 @@ public class Vaso : MonoBehaviour, Iinteractable
                 Inventory.instance.Add(plantaDoVaso.finishItem);
                 _spriteRenderer.sprite = baseSprite;
                 plantaDoVaso = null;
+                readyPlant = false;
+                stage = 0;
             }
 
             return;
@@ -125,13 +127,6 @@ public class Vaso : MonoBehaviour, Iinteractable
             }
             
         }
-    }
-
-    public void TurnOnVase()
-    {
-        usable = true;
-
-
     }
 }
 

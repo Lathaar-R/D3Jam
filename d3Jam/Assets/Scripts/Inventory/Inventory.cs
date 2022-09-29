@@ -61,6 +61,10 @@ public class Inventory : MonoBehaviour
     public bool open;
     public int slotPos = 0;
     
+    private void OnDestroy() {
+        Destroy(inventoryUI);
+    }
+
     private void Update()
     {
         if(PlayerMovment.freePlayer && !open)

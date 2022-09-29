@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
 {
+    int _served = 0;
     public GameObject clientPrefab;
 
     public List<GameObject> spawnAreas;
@@ -53,6 +54,7 @@ public class SpawnerScript : MonoBehaviour
 
         var c = Instantiate<GameObject>(clientPrefab, pos, Quaternion.identity);
         c.GetComponent<Client>().dir = direction[place / 2];
+        c.GetComponent<Client>().item = DataManager.instance.itemList[1];
         clients.Add(c);
 
         clientPos.Add(pos);
@@ -63,9 +65,19 @@ public class SpawnerScript : MonoBehaviour
         }
     }
 
-    public void Served()
+    public void Served(Client client)
     {
-        
+        DataManager.instance.AddCoin(client.GetResultCoins());
+
+        clientPos.Remove(client.gameObject.transform.position);
+        clients.Remove(client.gameObject);
+
+        _served++;
+
+        if(_served >= DataManager.instance.LevelInfo.numberOfClients)
+        {
+            GameManagerScript.instance.EndLevel();
+        }
     }
 
     public void ResetClients()

@@ -9,8 +9,11 @@ public class Client : MonoBehaviour, Iinteractable
     private Collider2D _clientCollider;
     private SpriteRenderer _wantSprite;
     private SpriteRenderer _bubbleSprite;
+    private SpriteRenderer _timerSprite;
     public Item item;
-    public int bonusCoins;
+    float timer;
+    float fullTimer;
+    
     public Vector3 dir;
 
     bool move = true;
@@ -19,17 +22,23 @@ public class Client : MonoBehaviour, Iinteractable
 
     GameObject want;
 
-    public int coins;
+    int coins;
 
     void Start()
     {
-        StartCoroutine("BonusTimer");
+        timer = item.time;
+        fullTimer = timer;
+        coins = item.coins;
+
+        
         _clientCollider = GetComponent<Collider2D>();
 
         _animator = GetComponentInChildren<Animator>();
 
         _bubbleSprite = GetComponentsInChildren<SpriteRenderer>()[1];
         _wantSprite = GetComponentsInChildren<SpriteRenderer>()[2];
+        _timerSprite = GetComponentsInChildren<SpriteRenderer>()[3];
+
         _wantSprite.sprite = item.icon;
         //_wantSprite.gameObject.transform.forward = dir;
         if(dir == Vector3.left) 
@@ -42,7 +51,7 @@ public class Client : MonoBehaviour, Iinteractable
             _bubbleSprite.flipY = true;
             _bubbleSprite.transform.localPosition += Vector3.down * 2;
         }
-        GetComponentsInChildren<Transform>()[2].transform.rotation = Quaternion.identity;
+        //GetComponentsInChildren<Transform>()[2].transform.rotation = Quaternion.identity;
 
         _spawner = GameObject.Find("ClientSpawner").GetComponent<SpawnerScript>();
 
@@ -59,9 +68,10 @@ public class Client : MonoBehaviour, Iinteractable
 
         if(Physics2D.OverlapBox(transform.position, Vector3.one, 0, 1 << 6))
         {
-            transform.Translate(-(dir * Time.deltaTime), Space.World);
+            transform.Translate((dir * 0.2f), Space.World);
             move = false;
             AnimateWant();
+            StartCoroutine(nameof(Timer));
         }
 
     }
@@ -75,21 +85,32 @@ public class Client : MonoBehaviour, Iinteractable
 
     public void OnInteract()
     {
-        if(Inventory.instance.equipedItem && Inventory.instance.equipedItem.itemName == item.itemName && Inventory.instance.equipedItem.id == itemType.planta)
+
+        if(Inventory.instance.equipedItem && Inventory.instance.equipedItem.itemName == item.itemName && (Inventory.instance.equipedItem.id == itemType.planta || Inventory.instance.equipedItem.id == itemType.animal))
         {
+            Debug.Log("A");
             Inventory.instance.Remove(Inventory.instance.equipedItem);
             Inventory.instance.UnequipItem();
-            _spawner.Served();
+            _spawner.Served(this);
             Destroy(gameObject);
         }
     }
 
-    IEnumerator BonusTimer()
+    public int GetResultCoins()
     {
-        while(bonusCoins > 0)
+        return (int)(coins + ((timer / fullTimer) * coins));
+    }
+
+    IEnumerator Timer()
+    {
+        while(timer > 0)
         {
-            bonusCoins--;
-            yield return new WaitForSecondsRealtime(1);
+            timer -= Time.deltaTime;
+
+            _timerSprite.color = Color.Lerp(Color.red, Color.green, timer / fullTimer);
+            _timerSprite.transform.localScale = new(1.2f * (timer/fullTimer), 0.15f, 0);
+
+            yield return new WaitForEndOfFrame();
         }
     }
 
