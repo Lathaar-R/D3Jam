@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fbd8cb41aab9a4f92ff97c703783b7, type: 3}
   m_Name: Raposa
   m_EditorClassIdentifier: 
-  plantName: 
-  finishItem: {fileID: 0}
-  plantSprites: []
+  plantName: Raposa
+  finishItem: {fileID: 11400000, guid: 6568235067094b449b8b1831dd25be7d, type: 2}
+  plantSprites:
+  - {fileID: 21300000, guid: 7a91dcf4addec8b4185997f6605ce69b, type: 3}
+  - {fileID: 21300000, guid: 054a2e10e38029d4ea4a3c0259937b9d, type: 3}
+  - {fileID: 21300000, guid: e622dd9c5e6baca4b8535ebf3f89f0b8, type: 3}
+  - {fileID: 21300000, guid: 44cad1472ee7cec4aa1f886874070829, type: 3}
   needsToGrow: []
   growTime: 0
   maxStage: 0

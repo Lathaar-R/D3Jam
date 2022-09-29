@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fbd8cb41aab9a4f92ff97c703783b7, type: 3}
   m_Name: Cenoura
   m_EditorClassIdentifier: 
-  plantName: 
-  finishItem: {fileID: 0}
-  plantSprites: []
+  plantName: Cenoura
+  finishItem: {fileID: 11400000, guid: 0b1e7d64b1716d746a6a8ab31ab7045f, type: 2}
+  plantSprites:
+  - {fileID: 21300000, guid: 47acf12f103020a4e83ee8812e5befbd, type: 3}
+  - {fileID: 21300000, guid: 054a2e10e38029d4ea4a3c0259937b9d, type: 3}
+  - {fileID: 21300000, guid: 4fa204e6800a6654aba833d4a8887b2b, type: 3}
   needsToGrow: []
   growTime: 0
   maxStage: 0

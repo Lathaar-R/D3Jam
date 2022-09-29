@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fbd8cb41aab9a4f92ff97c703783b7, type: 3}
   m_Name: Coelho
   m_EditorClassIdentifier: 
-  plantName: 
-  finishItem: {fileID: 0}
-  plantSprites: []
+  plantName: Coelho
+  finishItem: {fileID: 11400000, guid: a26919408d6da91418f86d885607e004, type: 2}
+  plantSprites:
+  - {fileID: 21300000, guid: 41dded1db7fa6f0409ebab75a686e0b1, type: 3}
+  - {fileID: 21300000, guid: d08faa8c9cc225d4e9c4b46b98a8f0c9, type: 3}
+  - {fileID: 21300000, guid: d3317c523155b0c49aea76b20ea58219, type: 3}
+  - {fileID: 21300000, guid: 18d87097bac2314499b2fbec5404e243, type: 3}
   needsToGrow: []
   growTime: 0
   maxStage: 0
