@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5f7209bae62a2ee41abc4cc358993bb6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Boncegro FF 4F
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: de0fac8987f220f43a55838381bcef5d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
