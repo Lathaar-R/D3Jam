@@ -15,7 +15,7 @@ MonoBehaviour:
   plantName: Passaro
   finishItem: {fileID: 11400000, guid: be5562ceb5c337d458729f547423c795, type: 2}
   plantSprites:
-  - {fileID: 21300000, guid: 8b4b9b041c799ec44aa68e38f48abe91, type: 3}
+  - {fileID: 21300000, guid: 360b692ae49bfef4d82f6ee5b613ab2a, type: 3}
   - {fileID: 21300000, guid: 73f72b937c095734ab78250883d78b61, type: 3}
   - {fileID: 21300000, guid: a51b50d4245359e4e8606aab75142e15, type: 3}
   - {fileID: 21300000, guid: 75e64ffb861eb5e4490b3856fc129390, type: 3}

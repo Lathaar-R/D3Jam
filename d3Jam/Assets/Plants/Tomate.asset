@@ -15,7 +15,7 @@ MonoBehaviour:
   plantName: Tomate
   finishItem: {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}
   plantSprites:
-  - {fileID: 21300000, guid: 848b1fbeaa0bc5142993eb8781453635, type: 3}
+  - {fileID: 21300000, guid: 18893b555ca2e304ea79354f12ddef05, type: 3}
   - {fileID: 21300000, guid: 4523817bb8bdac24ba1cc539455d8a11, type: 3}
   - {fileID: 21300000, guid: 420bb6e3821374941913065db05bc5f1, type: 3}
   needsToGrow:

@@ -15,7 +15,7 @@ MonoBehaviour:
   plantName: Gato
   finishItem: {fileID: 11400000, guid: 4b3fb9cd04a181e48bc16b92094dd72f, type: 2}
   plantSprites:
-  - {fileID: 21300000, guid: dab665565c9fa254fa949bbe9fc01faa, type: 3}
+  - {fileID: 21300000, guid: e3d3cd72655fe5a43ad514c46e712bad, type: 3}
   - {fileID: 21300000, guid: daf76852ac0b2804fa450ae3262c63f0, type: 3}
   - {fileID: 21300000, guid: fc051a1497da78a489dd52d14665a418, type: 3}
   - {fileID: 21300000, guid: ab7cac7fe7982c240b94ceb2ebb00607, type: 3}
