@@ -30,7 +30,7 @@ public class Vaso : MonoBehaviour, Iinteractable
             if(plantaDoVaso)
                 if((plantaDoVaso.needsToGrow[stage] == "Luz") && Physics2D.OverlapBox(transform.position, Vector2.one, 0, LayerMask.NameToLayer("Light")))
                 {
-                    growing += Time.deltaTime;
+                    growing += Time.deltaTime * DataManager.instance.soilMultiplyer;
                     Debug.Log("Luz na planta");
 
                     if(growing >= plantaDoVaso.growTime)

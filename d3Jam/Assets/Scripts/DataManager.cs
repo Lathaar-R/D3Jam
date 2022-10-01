@@ -20,6 +20,7 @@ public class DataManager : MonoBehaviour
     }
     public List<LevelParameters> levels;
 
+    public float soilMultiplyer = 1;
     
 
     private void Awake()

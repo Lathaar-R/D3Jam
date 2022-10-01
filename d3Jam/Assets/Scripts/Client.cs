@@ -88,7 +88,6 @@ public class Client : MonoBehaviour, Iinteractable
 
         if(Inventory.instance.equipedItem && Inventory.instance.equipedItem.itemName == item.itemName && (Inventory.instance.equipedItem.id == itemType.planta || Inventory.instance.equipedItem.id == itemType.animal))
         {
-            Debug.Log("A");
             Inventory.instance.Remove(Inventory.instance.equipedItem);
             Inventory.instance.UnequipItem();
             _spawner.Served(this);

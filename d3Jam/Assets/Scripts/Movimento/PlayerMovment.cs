@@ -30,7 +30,13 @@ public class PlayerMovment : MonoBehaviour
     //public bool cRight, cLeft, cUp, cDown;
 
     //Proprierties
-    public bool Moving { get {return _moving;} }
+    public bool Moving
+    { 
+        get
+        {
+            return _moving;
+        } 
+    }
     public bool Movement{
         get 
         {
@@ -70,8 +76,7 @@ public class PlayerMovment : MonoBehaviour
         Move();
         
 
-        //Debug.Log(Direction);
-        //if(Input.GetKeyDown(KeyCode.Space)) Inventory.instance.;
+    
 
     }
 
@@ -87,7 +92,7 @@ public class PlayerMovment : MonoBehaviour
             { 
                 _movementQueue.Enqueue(Vector2.left * gridSize);
             }
-            if(_playerInputs.y > 0)
+            else if(_playerInputs.y > 0)
             {
                 _movementQueue.Enqueue(Vector2.up * gridSize);
             }

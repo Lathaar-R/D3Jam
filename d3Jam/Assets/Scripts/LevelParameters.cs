@@ -10,4 +10,6 @@ public class LevelParameters : ScriptableObject
     public int timeToSpawnClients;
     public int timeToSpawnFirstClient;
 
+    public List<GameObject> sceneObjects;
+
 }

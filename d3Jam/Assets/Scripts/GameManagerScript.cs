@@ -10,16 +10,15 @@ public class GameManagerScript : MonoBehaviour
 {
     string gameState;
 
+    public Action endLevelCallback;
+    public Action finishLevelCallback;
     
-
+    public UpgradeScript _upgradeScript;
     public SpawnerScript spawnerScript;
 
     public Image fadeOutImage;
 
     public static GameManagerScript instance;
-
-    public float fadeToBlackTime;
-    public float deactivateUIsTime;
 
 
     //private fields
@@ -32,9 +31,8 @@ public class GameManagerScript : MonoBehaviour
 
     [Header("Criacao do Level")]
     [SerializeField] GameObject _vasoPrefab;
-    [SerializeField] Vector3 _inicialPlayerPos;
-    [SerializeField] Vector3 _inicialLightPos;
-    [SerializeField] List<GameObject> _sceneObjects;
+    // [SerializeField] Vector3 _inicialPlayerPos;
+    // [SerializeField] Vector3 _inicialLightPos;
 
     public List<GameObject> _objectsOfScene;
 
@@ -52,13 +50,13 @@ public class GameManagerScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+
     void Start()
     {
-
-        
         CreateLevel();
 
         spawnerScript.StartSpawning();
+
     }
 
     void Update()
@@ -66,7 +64,7 @@ public class GameManagerScript : MonoBehaviour
         
     }
 
-    void ChangeGameState(string state)
+    public void ChangeGameState(string state)
     {
         if(state == gameState) return;
 
@@ -74,6 +72,9 @@ public class GameManagerScript : MonoBehaviour
         {
             case "play": 
                         CreateLevel();
+                        break;
+            case "finishedLevel":
+                        FinishLevel();
                         break;
             
         }
@@ -86,6 +87,8 @@ public class GameManagerScript : MonoBehaviour
         InstantiateObjects();
     }
 
+    
+
     void CreateVase()
     {
         for(int i = 0; i < vasosPos.Length; i++)
@@ -96,7 +99,7 @@ public class GameManagerScript : MonoBehaviour
 
     void InstantiateObjects()
     {
-        foreach (var item in _sceneObjects)
+        foreach (var item in DataManager.instance.LevelInfo.sceneObjects)
         {
             _objectsOfScene.Add(Instantiate<GameObject>(item, item.transform.position, Quaternion.identity));
         }
@@ -108,9 +111,7 @@ public class GameManagerScript : MonoBehaviour
         c.a = 0;
         while(c.a < 1)
         {
-            Debug.Log("Fade");
-
-            c.a += fadeToBlackTime * (Time.deltaTime / time);
+            c.a += (Time.deltaTime / time);
             fadeOutImage.color = c;
             yield return new WaitForEndOfFrame();
         }
@@ -119,23 +120,33 @@ public class GameManagerScript : MonoBehaviour
     public IEnumerator FadeIn(int time)
     {
         Color c = Color.black;
-        c.a = 255;
+        c.a = 1;
         while(fadeOutImage.color.a > 0)
         {
-            c.a -= fadeToBlackTime * Time.deltaTime;
+            c.a -= (Time.deltaTime / time);
             fadeOutImage.color = c;
             yield return new WaitForEndOfFrame();
         }
     }
-        
 
-    public void EndLevel()
+    public void FinishLevel()
     {
         PlayerMovment.freePlayer = false;
-        StartCoroutine(nameof(FadeOut), 5);
-        
+
+        StartCoroutine(nameof(FadeOut), 5);    
         
         Invoke(nameof(DestroyAll), 5);
+
+        Invoke(nameof(GoToUpgrades), 5);
+
+        
+    }
+
+    void GoToUpgrades()
+    {
+        StartCoroutine(nameof(FadeIn), 2);
+
+        finishLevelCallback?.Invoke();
     }
 
     void DestroyAll()

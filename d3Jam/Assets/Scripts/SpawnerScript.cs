@@ -14,6 +14,8 @@ public class SpawnerScript : MonoBehaviour
 
     Vector3[] direction = {Vector3.down, Vector3.right, Vector3.up, Vector3.left};
 
+   
+
     void Start()
     {
         
@@ -54,7 +56,7 @@ public class SpawnerScript : MonoBehaviour
 
         var c = Instantiate<GameObject>(clientPrefab, pos, Quaternion.identity);
         c.GetComponent<Client>().dir = direction[place / 2];
-        c.GetComponent<Client>().item = DataManager.instance.itemList[1];
+        c.GetComponent<Client>().item = DataManager.instance.itemList[0];
         clients.Add(c);
 
         clientPos.Add(pos);
@@ -76,7 +78,7 @@ public class SpawnerScript : MonoBehaviour
 
         if(_served >= DataManager.instance.LevelInfo.numberOfClients)
         {
-            GameManagerScript.instance.EndLevel();
+            GameManagerScript.instance.ChangeGameState("finishedLevel");
         }
     }
 
