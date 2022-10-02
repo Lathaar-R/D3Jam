@@ -29,7 +29,7 @@ public class SpawnerScript : MonoBehaviour
 
     public void StartSpawning()
     {
-        InvokeRepeating(nameof(Spawn), DataManager.instance.LevelInfo.timeToSpawnFirstClient , DataManager.instance.LevelInfo.timeToSpawnClients);
+        Invoke(nameof(Spawn), DataManager.instance.LevelInfo.time[0]);
 
 
     }
@@ -55,13 +55,18 @@ public class SpawnerScript : MonoBehaviour
         }while(clientPos.Contains(pos));
 
         var c = Instantiate<GameObject>(clientPrefab, pos, Quaternion.identity);
+        
         c.GetComponent<Client>().dir = direction[place / 2];
-        c.GetComponent<Client>().item = DataManager.instance.itemList[0];
+        c.GetComponent<Client>().item = DataManager.instance.LevelInfo.clientOrderItemList[clients.Count];
+        
         clients.Add(c);
+
+        if(clients.Count < DataManager.instance.LevelInfo.clients)
+            Invoke(nameof(Spawn), DataManager.instance.LevelInfo.time[clients.Count]);
 
         clientPos.Add(pos);
 
-        if(clients.Count >= DataManager.instance.LevelInfo.numberOfClients)
+        if(clients.Count >= DataManager.instance.LevelInfo.clients)
         {
             StopSpawning();
         }
@@ -76,7 +81,7 @@ public class SpawnerScript : MonoBehaviour
 
         _served++;
 
-        if(_served >= DataManager.instance.LevelInfo.numberOfClients)
+        if(_served >= DataManager.instance.LevelInfo.clients)
         {
             GameManagerScript.instance.ChangeGameState("finishedLevel");
         }

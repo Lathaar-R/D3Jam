@@ -5,11 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Level Parameters")]
 public class LevelParameters : ScriptableObject
 {
-    public int numberOfClients;
-    
-    public int timeToSpawnClients;
-    public int timeToSpawnFirstClient;
-
-    public List<GameObject> sceneObjects;
+    public int clients;
+    public List<int> time;
+    public List<Item>  clientOrderItemList;
+    public List<Item>  seedsOfLevel;
 
 }

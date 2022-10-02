@@ -6,7 +6,7 @@ public class NextLevel : UpgradeSlot
 {
     public override void Upgrade()
     {
-        GameManagerScript.instance.ChangeGameState("play");
+        GameManagerScript.instance.ChangeGameState("newLevel");
     }
 
 }

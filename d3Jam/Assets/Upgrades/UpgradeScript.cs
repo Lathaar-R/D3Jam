@@ -35,6 +35,8 @@ public class UpgradeScript : MonoBehaviour
         upgrades = GetComponentsInChildren<UpgradeSlot>();
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -64,6 +66,13 @@ public class UpgradeScript : MonoBehaviour
     void AddCallback()
     {
         GameManagerScript.instance.finishLevelCallback += OnFinishLevel;
+        GameManagerScript.instance.changingLevelCallback += OnChangeLevel;
+        Debug.Log("A");
+    }
+
+    private void OnChangeLevel()
+    {
+        CloseUpgrades();
     }
 
     public void OpenUpgrades()

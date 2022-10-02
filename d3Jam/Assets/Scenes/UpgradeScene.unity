@@ -1266,6 +1266,11 @@ MonoBehaviour:
   - {x: 1, y: 3, z: 0}
   globalLight: {fileID: 894267301}
   _vasoPrefab: {fileID: 6670665449297742954, guid: f377f75f34f502345872bc5149ebc400, type: 3}
+  sceneObjects:
+  - {fileID: 1066878187222974418, guid: e31f94714752f07499d13bb079cf37e2, type: 3}
+  - {fileID: 3293000909409765545, guid: 4371e6f639dca514986d56d11aca50bb, type: 3}
+  - {fileID: 196264609931221405, guid: c252ea3f0054b52419422c0f5a9f8c17, type: 3}
+  - {fileID: 3235416186036613226, guid: b5fe690f13abed546b84ffac880fb627, type: 3}
   _objectsOfScene: []
 --- !u!1 &1407304730
 GameObject:
@@ -2374,9 +2379,10 @@ MonoBehaviour:
   plantsReferences:
   - {fileID: 11400000, guid: fced0dd859e8db64d9636efd7980769d, type: 2}
   - {fileID: 11400000, guid: 38d2a6ddaff754d46a5b685f8cf0428b, type: 2}
-  itemList:
-  - {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}
-  - {fileID: 11400000, guid: be5562ceb5c337d458729f547423c795, type: 2}
+  - {fileID: 11400000, guid: 2e86ba426b53c9f409d367bd5eb9d09c, type: 2}
+  - {fileID: 11400000, guid: 4e2da87ac9cec7c49b1d8070c0915acc, type: 2}
+  - {fileID: 11400000, guid: d03e9557bef2b2b40b974cb9081c4dce, type: 2}
+  - {fileID: 11400000, guid: 07c95d2eb51c37f408e7d849db6485af, type: 2}
   coinsObject: {fileID: 7431376333576826144, guid: 036832995bb443e4fab4780016fea612, type: 3}
   level: 1
   levels:
@@ -7089,6 +7095,10 @@ PrefabInstance:
     - target: {fileID: 2301931702357894255, guid: a7fef076ee4e58640a9bdfc186eaad50, type: 3}
       propertyPath: m_Name
       value: Upgrades
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301931702357894255, guid: a7fef076ee4e58640a9bdfc186eaad50, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7fef076ee4e58640a9bdfc186eaad50, type: 3}

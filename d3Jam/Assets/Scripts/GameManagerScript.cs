@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour
 
     public Action endLevelCallback;
     public Action finishLevelCallback;
+    public Action changingLevelCallback;
     
     public UpgradeScript _upgradeScript;
     public SpawnerScript spawnerScript;
@@ -31,12 +32,10 @@ public class GameManagerScript : MonoBehaviour
 
     [Header("Criacao do Level")]
     [SerializeField] GameObject _vasoPrefab;
-    // [SerializeField] Vector3 _inicialPlayerPos;
-    // [SerializeField] Vector3 _inicialLightPos;
+
+    public List<GameObject> sceneObjects;
 
     public List<GameObject> _objectsOfScene;
-
-
 
     private void Awake()
     {
@@ -76,12 +75,24 @@ public class GameManagerScript : MonoBehaviour
             case "finishedLevel":
                         FinishLevel();
                         break;
+            case "newLevel":
+                        ChangeLevel();
+                        break;
             
         }
     }
 
+    private void ChangeLevel()
+    {
+        StartCoroutine(nameof(FadeOut), 3);
+
+        Invoke(nameof(CreateLevel), 4);
+    }
+
     void CreateLevel()
     {
+        changingLevelCallback?.Invoke();
+
         CreateVase();
 
         InstantiateObjects();
@@ -99,7 +110,7 @@ public class GameManagerScript : MonoBehaviour
 
     void InstantiateObjects()
     {
-        foreach (var item in DataManager.instance.LevelInfo.sceneObjects)
+        foreach (var item in sceneObjects)
         {
             _objectsOfScene.Add(Instantiate<GameObject>(item, item.transform.position, Quaternion.identity));
         }
@@ -135,9 +146,9 @@ public class GameManagerScript : MonoBehaviour
 
         StartCoroutine(nameof(FadeOut), 5);    
         
-        Invoke(nameof(DestroyAll), 5);
+        Invoke(nameof(DestroyAll), 6);
 
-        Invoke(nameof(GoToUpgrades), 5);
+        Invoke(nameof(GoToUpgrades), 6);
 
         
     }

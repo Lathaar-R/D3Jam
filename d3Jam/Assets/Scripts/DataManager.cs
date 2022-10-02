@@ -9,7 +9,7 @@ public class DataManager : MonoBehaviour
     private int _coins;
     public static DataManager instance;
     public List<Plant> plantsReferences;
-    public List<Item> itemList;
+    
 
     public GameObject coinsObject;
 

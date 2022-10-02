@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3aa5c48e1319cb4f9085d926a9e4c66, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  numberOfClients: 1
-  timeToSpawnClients: 1
-  timeToSpawnFirstClient: 5
-  sceneObjects:
-  - {fileID: 1066878187222974418, guid: e31f94714752f07499d13bb079cf37e2, type: 3}
-  - {fileID: 196264609931221405, guid: c252ea3f0054b52419422c0f5a9f8c17, type: 3}
-  - {fileID: 3293000909409765545, guid: 4371e6f639dca514986d56d11aca50bb, type: 3}
-  - {fileID: 3235416186036613226, guid: b5fe690f13abed546b84ffac880fb627, type: 3}
+  clients: 1
+  time: 01000000
+  clientOrderItemList:
+  - {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}
+  seedsOfLevel:
+  - {fileID: 11400000, guid: a29ffadc0009ef84d964162e77b7958a, type: 2}
+  - {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}

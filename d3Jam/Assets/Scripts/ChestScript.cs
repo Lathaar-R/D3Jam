@@ -42,9 +42,9 @@ public class ChestScript : MonoBehaviour, Iinteractable
         Invoke(nameof(CloseMenu), Time.fixedDeltaTime);
 
         int i = 0;
-        foreach (var item in _chestSlots)
+        foreach (var item in DataManager.instance.LevelInfo.seedsOfLevel)
         {
-            item.AddItem(chestItems[i]);
+            _chestSlots[i].AddItem(item);
             i++;
         }
         
