@@ -14,7 +14,7 @@ public class SpawnerScript : MonoBehaviour
 
     Vector3[] direction = {Vector3.down, Vector3.right, Vector3.up, Vector3.left};
 
-   
+
 
     void Start()
     {

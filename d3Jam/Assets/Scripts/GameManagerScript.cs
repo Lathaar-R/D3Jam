@@ -52,9 +52,7 @@ public class GameManagerScript : MonoBehaviour
 
     void Start()
     {
-        CreateLevel();
-
-        spawnerScript.StartSpawning();
+        ChangeGameState("play");
 
     }
 
@@ -67,13 +65,16 @@ public class GameManagerScript : MonoBehaviour
     {
         if(state == gameState) return;
 
+        gameState = state;
         switch (state)
         {
             case "play": 
                         CreateLevel();
+                        spawnerScript.StartSpawning();
                         break;
             case "finishedLevel":
                         FinishLevel();
+                        spawnerScript.ResetClients();
                         break;
             case "newLevel":
                         ChangeLevel();
@@ -86,13 +87,20 @@ public class GameManagerScript : MonoBehaviour
     {
         StartCoroutine(nameof(FadeOut), 3);
 
-        Invoke(nameof(CreateLevel), 4);
+
+        Invoke(nameof(ChangeToPlay), 4);
+        
+    }
+
+    void ChangeToPlay()
+    {
+        changingLevelCallback?.Invoke();
+        StartCoroutine(nameof(FadeIn), 4);
+        ChangeGameState("play");
     }
 
     void CreateLevel()
     {
-        changingLevelCallback?.Invoke();
-
         CreateVase();
 
         InstantiateObjects();
@@ -166,7 +174,10 @@ public class GameManagerScript : MonoBehaviour
         foreach (var obj in _objectsOfScene)
         {
             Destroy(obj);
+            
         }
+        _objectsOfScene.Clear();
+        
     }
     
 }

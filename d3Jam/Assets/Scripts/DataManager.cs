@@ -34,10 +34,19 @@ public class DataManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    private void OnDisable() {
+        GameManagerScript.instance.changingLevelCallback -= GoToNextLevel;
+    }
 
     private void Start() 
     {
         coinsObject = Instantiate<GameObject>(coinsObject, GameObject.Find("Canvas").transform);
+        GameManagerScript.instance.changingLevelCallback += GoToNextLevel;
+    }
+
+    private void GoToNextLevel()
+    {
+        level++;
     }
 
     public int GetCoins()
