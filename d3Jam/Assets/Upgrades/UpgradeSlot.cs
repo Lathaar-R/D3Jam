@@ -5,17 +5,21 @@ using UnityEngine.UI;
 
 public abstract class UpgradeSlot : MonoBehaviour
 {
-    Image _spriteRenderer;
-
+    Image _image;
     public GameObject visualFeedback;
     public bool available = true;
     public UpgradeInfo upgradeInfo;
     public abstract void Upgrade();
 
+
     private void Start()
     {
-        _spriteRenderer = GetComponent<Image>();
+        _image = GetComponentsInChildren<Image>()[1];
 
-        _spriteRenderer.sprite = upgradeInfo.Upicon;
+        _image.sprite = upgradeInfo.Upicon;
+
+    //     itemImage = GameObject.Find("ItemImage");
+
+    //     itemImage.GetComponentsInChildren<Image>()[1].sprite = 
     }
 }

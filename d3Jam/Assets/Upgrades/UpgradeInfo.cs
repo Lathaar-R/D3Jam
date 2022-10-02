@@ -7,6 +7,6 @@ public class UpgradeInfo : ScriptableObject
 {
     public Sprite Upicon; 
     public string upgradeName;
-    public string upgradeDescription;
+    [TextArea(10, 20)]public string upgradeDescription;
 
 }

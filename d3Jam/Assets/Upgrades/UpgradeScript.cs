@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeScript : MonoBehaviour
 {
     public GameObject select;
-    public UpgradeSlot[] upgrades;
+    public UpgradeSlot[] upgradeSlots;
+    public UpgradeInfo[] upgrades;
     public GameObject UpgradeUI;
     public bool open;
     public int slot;
+    Image itemImage;
+    GameObject itemDescription;
 
     private void OnEnable()
     {
@@ -32,7 +36,22 @@ public class UpgradeScript : MonoBehaviour
 
         Invoke(nameof(CloseUpgrades), Time.fixedDeltaTime);
 
-        upgrades = GetComponentsInChildren<UpgradeSlot>();
+        itemImage = GameObject.Find("ImageOfItem").GetComponent<Image>();
+        //itemImage = GameObject.Find("ItemIDescription");
+
+        // upgradeSlots = GetComponentsInChildren<UpgradeSlot>();
+
+        // int i = 0;
+        // foreach (var item in upgradeSlots)
+        // {
+        //     if(i > upgrades.Length)
+        //         continue;
+            
+
+        //     item.GetComponentsInChildren<Image>()[1].sprite = upgrades[i].Upicon;
+
+        //     i++;
+        // }
     }
 
 
@@ -48,9 +67,13 @@ public class UpgradeScript : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.LeftArrow))
             slot--; 
         
-        slot = Mathf.Clamp(slot, 0, upgrades.Length - 1);
+        slot = Mathf.Clamp(slot, 0, upgradeSlots.Length - 1);
 
-        select.transform.position = upgrades[slot].transform.position;
+        select.transform.position = upgradeSlots[slot].transform.position;
+
+        //Debug.Log(upgradeSlots.Length);
+
+        itemImage.sprite = upgradeSlots[slot].upgradeInfo.Upicon;
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -60,14 +83,13 @@ public class UpgradeScript : MonoBehaviour
 
     private void BuyUpgrade()
     {
-        upgrades[slot].Upgrade();
+        upgradeSlots[slot].Upgrade();
     }
 
     void AddCallback()
     {
         GameManagerScript.instance.finishLevelCallback += OnFinishLevel;
         GameManagerScript.instance.changingLevelCallback += OnChangeLevel;
-        Debug.Log("A");
     }
 
     private void OnChangeLevel()

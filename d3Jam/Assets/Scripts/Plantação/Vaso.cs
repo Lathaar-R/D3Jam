@@ -80,7 +80,7 @@ public class Vaso : MonoBehaviour, Iinteractable
         
         if(readyPlant)
         {
-            if(Inventory.instance.items.Count <= Inventory.instance.space)
+            if(Inventory.instance.items.Count <= DataManager.instance.inventorySpace)
             {
                 Inventory.instance.Add(plantaDoVaso.finishItem);
                 _spriteRenderer.sprite = baseSprite;

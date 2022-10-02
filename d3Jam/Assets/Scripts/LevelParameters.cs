@@ -10,4 +10,5 @@ public class LevelParameters : ScriptableObject
     public List<Item>  clientOrderItemList;
     public List<Item>  seedsOfLevel;
 
+    
 }

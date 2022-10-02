@@ -35,7 +35,7 @@ public class GameManagerScript : MonoBehaviour
 
     public List<GameObject> sceneObjects;
 
-    public List<GameObject> _objectsOfScene;
+    public List<GameObject> objectsOfScene;
 
     private void Awake()
     {
@@ -112,7 +112,7 @@ public class GameManagerScript : MonoBehaviour
     {
         for(int i = 0; i < vasosPos.Length; i++)
         {
-            _objectsOfScene.Add(Instantiate<GameObject>(_vasoPrefab, vasosPos[i], Quaternion.identity));
+            objectsOfScene.Add(Instantiate<GameObject>(_vasoPrefab, vasosPos[i], Quaternion.identity));
         }
     }
 
@@ -120,7 +120,7 @@ public class GameManagerScript : MonoBehaviour
     {
         foreach (var item in sceneObjects)
         {
-            _objectsOfScene.Add(Instantiate<GameObject>(item, item.transform.position, Quaternion.identity));
+            objectsOfScene.Add(Instantiate<GameObject>(item, item.transform.position, Quaternion.identity));
         }
     }
 
@@ -171,12 +171,12 @@ public class GameManagerScript : MonoBehaviour
     void DestroyAll()
     {
         Debug.Log("Destroy");
-        foreach (var obj in _objectsOfScene)
+        foreach (var obj in objectsOfScene)
         {
             Destroy(obj);
             
         }
-        _objectsOfScene.Clear();
+        objectsOfScene.Clear();
         
     }
     

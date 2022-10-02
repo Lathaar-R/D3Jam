@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
 
     public static Inventory instance;
 
-    public GameObject inventoryUI;
+    GameObject inventoryUI;
     //public Canvas mainCanvas;
     void Awake()
     {
@@ -29,9 +29,10 @@ public class Inventory : MonoBehaviour
 
         var canvas = GameObject.Find("Canvas");
 
-        inventoryUI = Instantiate<GameObject>(inventoryUI, canvas.transform);
+        inventoryUI = Instantiate<GameObject>(DataManager.instance.inventoryUI, canvas.transform);
         
         
+
         inventoryUI.SetActive(true);
 
         Invoke(nameof(CloseInventory), Time.fixedDeltaTime);
@@ -49,7 +50,7 @@ public class Inventory : MonoBehaviour
     public OnInventoryInteract onInventoryInteract;
 
 
-    public int space = 6;  // Amount of slots in inventory
+  // Amount of slots in inventory
 
     // Current list of items in inventory
     public List<Item> items = new List<Item>();
@@ -98,7 +99,7 @@ public class Inventory : MonoBehaviour
                 Invoke("CloseInventory", Time.fixedDeltaTime);
             }
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) && items.Count > 0)
             {         
                 //Cannot equip with bucket in hand
                 EquipItem(items[slotPos]);
@@ -147,7 +148,7 @@ public class Inventory : MonoBehaviour
     public bool Add(Item item)
     {
         // Check if out of space
-        if (items.Count >= space)
+        if (items.Count >= DataManager.instance.inventorySpace)
         {
             Debug.Log("Not enough room.");
             return false;

@@ -181,7 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361570cf93b5304479ed80450f058975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryUI: {fileID: 2798975417546576016, guid: 80a541e55f1f36f4ab044eeafd07f569, type: 3}
+  uiSprite: {fileID: 21300000, guid: 521a4d6b501f67344ab07a5e517e46c7, type: 3}
+  reactTransform: {fileID: 0}
+  inventoryUI: {fileID: 2798975417546576016, guid: af329a7aab0683d4892a2627f9baf75a, type: 3}
   space: 6
   items: []
   equipedItem: {fileID: 0}

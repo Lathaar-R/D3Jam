@@ -10,7 +10,7 @@ public class WellScript : MonoBehaviour, Iinteractable
 
     public void OnInteract()
     {
-        if(Inventory.instance.items.Count < Inventory.instance.space)
+        if(Inventory.instance.items.Count < DataManager.instance.inventorySpace)
         {
             var newWater = Instantiate(water);
 

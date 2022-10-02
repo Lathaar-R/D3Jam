@@ -21,6 +21,11 @@ public class DataManager : MonoBehaviour
     public List<LevelParameters> levels;
 
     public float soilMultiplyer = 1;
+
+    public int inventorySpace = 6;
+    public GameObject inventoryUI;
+
+    
     
 
     private void Awake()
