@@ -1398,9 +1398,13 @@ MonoBehaviour:
   fadeOutImage: {fileID: 824429119}
   startPos: {x: 0, y: 0, z: 0}
   vasosPos:
-  - {x: 5, y: 3, z: 0}
-  - {x: 3, y: 3, z: 0}
-  - {x: 1, y: 3, z: 0}
+  - {x: 8, y: 1, z: 0}
+  - {x: 7, y: 1, z: 0}
+  - {x: 6, y: 1, z: 0}
+  - {x: 5, y: 1, z: 0}
+  - {x: -4, y: 1, z: 0}
+  - {x: -4, y: 3, z: 0}
+  - {x: -4, y: -1, z: 0}
   globalLight: {fileID: 894267301}
   _vasoPrefab: {fileID: 6670665449297742954, guid: f377f75f34f502345872bc5149ebc400, type: 3}
   sceneObjects:

@@ -19,6 +19,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d08faa8c9cc225d4e9c4b46b98a8f0c9, type: 3}
   - {fileID: 21300000, guid: d3317c523155b0c49aea76b20ea58219, type: 3}
   - {fileID: 21300000, guid: 18d87097bac2314499b2fbec5404e243, type: 3}
-  needsToGrow: []
+  needsToGrow:
+  - Agua
+  - Luz
+  - Cenoura
   growTime: 0
   maxStage: 0

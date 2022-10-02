@@ -19,6 +19,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: daf76852ac0b2804fa450ae3262c63f0, type: 3}
   - {fileID: 21300000, guid: fc051a1497da78a489dd52d14665a418, type: 3}
   - {fileID: 21300000, guid: ab7cac7fe7982c240b94ceb2ebb00607, type: 3}
-  needsToGrow: []
+  needsToGrow:
+  - Agua
+  - Luz
+  - Passaro
   growTime: 0
   maxStage: 0

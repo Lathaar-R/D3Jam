@@ -19,6 +19,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 054a2e10e38029d4ea4a3c0259937b9d, type: 3}
   - {fileID: 21300000, guid: e622dd9c5e6baca4b8535ebf3f89f0b8, type: 3}
   - {fileID: 21300000, guid: 44cad1472ee7cec4aa1f886874070829, type: 3}
-  needsToGrow: []
+  needsToGrow:
+  - Agua
+  - Luz
+  - Coelho
   growTime: 0
   maxStage: 0
