@@ -123,7 +123,7 @@ public class Client : MonoBehaviour, Iinteractable
             yield return new WaitForEndOfFrame();
         }
 
-
+        _spawner.WrongServed(this);
     }
 
 }
