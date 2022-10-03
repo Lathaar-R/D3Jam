@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpgradeScript : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class UpgradeScript : MonoBehaviour
     public bool open;
     public int slot;
     Image itemImage;
-    GameObject itemDescription;
+    public TextMeshProUGUI itemDescription;
+
+    public GameObject precoProduto;
+    public TextMeshProUGUI preco;
 
     private void OnEnable()
     {
@@ -74,8 +78,10 @@ public class UpgradeScript : MonoBehaviour
         //Debug.Log(upgradeSlots.Length);
 
         itemImage.sprite = upgradeSlots[slot].upgradeInfo.Upicon;
+        preco.text = upgradeSlots[slot].upgradeInfo.price.ToString("000");
+        itemDescription.text = upgradeSlots[slot].upgradeInfo.upgradeDescription;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && DataManager.instance.GetCoins() >= upgradeSlots[slot].upgradeInfo.price && upgradeSlots[slot].available)
         {
             BuyUpgrade();
         }
@@ -83,6 +89,9 @@ public class UpgradeScript : MonoBehaviour
 
     private void BuyUpgrade()
     {
+        upgradeSlots[slot].TurnOff();
+        upgradeSlots[slot].available = false;
+        DataManager.instance.AddCoin(- upgradeSlots[slot].upgradeInfo.price);
         upgradeSlots[slot].Upgrade();
     }
 

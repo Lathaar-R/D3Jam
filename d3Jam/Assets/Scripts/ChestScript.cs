@@ -13,7 +13,7 @@ public class ChestScript : MonoBehaviour, Iinteractable
     public int coolDown;
     bool cool;
 
-    public Item[] chestItems;
+    //public Item[] chestItems;
     private InventorySlot[] _chestSlots;
     public int slotPos = 0;
     bool open;
@@ -65,8 +65,8 @@ public class ChestScript : MonoBehaviour, Iinteractable
 
         if(Input.GetKeyDown(KeyCode.D)) slotPos++;
         if(Input.GetKeyDown(KeyCode.A)) slotPos--;
-        slotPos = Mathf.Clamp(slotPos, 0, 5);
-        
+        slotPos = Mathf.Clamp(slotPos, 0, DataManager.instance.LevelInfo.seedsOfLevel.Count - 1);
+    
 
         if(Input.GetKeyDown(KeyCode.Space))
         {

@@ -42,7 +42,7 @@ public class GameManagerScript : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            
             return;
         }
 
@@ -53,7 +53,12 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         ChangeGameState("play");
+        StartCoroutine(nameof(FadeIn), 2);
+    }
 
+    void StartGame()
+    {
+        
     }
 
     void Update()
@@ -79,8 +84,25 @@ public class GameManagerScript : MonoBehaviour
             case "newLevel":
                         ChangeLevel();
                         break;
+            case "GameOver":
+                        GameOver();
+                        break;
             
         }
+    }
+
+    private void GameOver()
+    {
+        PlayerMovment.freePlayer = false;
+
+        StartCoroutine(nameof(FadeOut), 5);
+
+        Invoke(nameof(GoBackToMenu), 7);
+    }
+
+    private void GoBackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     private void ChangeLevel()
@@ -97,6 +119,8 @@ public class GameManagerScript : MonoBehaviour
         changingLevelCallback?.Invoke();
         StartCoroutine(nameof(FadeIn), 4);
         ChangeGameState("play");
+
+        DataManager.instance.coinsObject.transform.position = new(-778.5f, 447.5f);
     }
 
     void CreateLevel()

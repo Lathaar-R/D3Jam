@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
 {
+    PlayerHealth player;
     int _served = 0;
     public GameObject clientPrefab;
 
@@ -18,7 +19,7 @@ public class SpawnerScript : MonoBehaviour
 
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
     }
 
 
@@ -87,9 +88,21 @@ public class SpawnerScript : MonoBehaviour
         }
     }
 
+    public void WrongServed(Client client)
+    {
+        clientPos.Remove(client.gameObject.transform.position);
+        clients.Remove(client.gameObject);
+
+        _served++;
+
+        player.DecreaseHealth();
+    }
+
     public void ResetClients()
     {
         clientPos.Clear();
         clients.Clear();
     }
+
+    
 }

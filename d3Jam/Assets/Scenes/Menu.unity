@@ -711,7 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7429ea70ff95a74e8d728002134df75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: BaseScene
+  gameScene: UpgradeScene
   creditsScene: ClientTest
 --- !u!1 &1397571701
 GameObject:

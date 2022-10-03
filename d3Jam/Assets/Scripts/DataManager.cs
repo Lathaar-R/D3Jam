@@ -25,7 +25,12 @@ public class DataManager : MonoBehaviour
     public int inventorySpace = 6;
     public GameObject inventoryUI;
 
-    
+    public float playerSpeedMulti = 1;
+
+    public float lightR = 1;
+    public float paciencia = 1;
+    public float pocoVel = 1;
+
     
 
     private void Awake()
@@ -37,7 +42,7 @@ public class DataManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        
     }
     private void OnDisable() {
         GameManagerScript.instance.changingLevelCallback -= GoToNextLevel;

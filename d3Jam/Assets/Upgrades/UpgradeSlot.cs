@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,5 +22,10 @@ public abstract class UpgradeSlot : MonoBehaviour
     //     itemImage = GameObject.Find("ItemImage");
 
     //     itemImage.GetComponentsInChildren<Image>()[1].sprite = 
+    }
+
+    internal void TurnOff()
+    {
+        _image.color = Color.gray;
     }
 }

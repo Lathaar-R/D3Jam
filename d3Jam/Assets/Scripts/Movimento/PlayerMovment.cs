@@ -153,7 +153,7 @@ public class PlayerMovment : MonoBehaviour
 
             while (transform.position != finish)
             {
-                pos = Vector3.MoveTowards(pos, finish, walkSpeed * Time.deltaTime);
+                pos = Vector3.MoveTowards(pos, finish, DataManager.instance.playerSpeedMulti * walkSpeed * Time.deltaTime);
                 transform.position = pos;
                 
                 yield return new WaitForEndOfFrame();

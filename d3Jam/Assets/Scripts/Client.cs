@@ -74,6 +74,7 @@ public class Client : MonoBehaviour, Iinteractable
             StartCoroutine(nameof(Timer));
         }
 
+
     }
 
     private void AnimateWant()
@@ -86,11 +87,21 @@ public class Client : MonoBehaviour, Iinteractable
     public void OnInteract()
     {
 
-        if(Inventory.instance.equipedItem && Inventory.instance.equipedItem.itemName == item.itemName && (Inventory.instance.equipedItem.id == itemType.planta || Inventory.instance.equipedItem.id == itemType.animal))
+        if(Inventory.instance.equipedItem)
         {
+            if(Inventory.instance.equipedItem.itemName == item.itemName && (Inventory.instance.equipedItem.id == itemType.planta || Inventory.instance.equipedItem.id == itemType.animal))
+            {
+                
+                _spawner.Served(this);
+                
+            }
+            else
+            {
+                _spawner.WrongServed(this);
+            }
+
             Inventory.instance.Remove(Inventory.instance.equipedItem);
             Inventory.instance.UnequipItem();
-            _spawner.Served(this);
             Destroy(gameObject);
         }
     }
@@ -104,13 +115,15 @@ public class Client : MonoBehaviour, Iinteractable
     {
         while(timer > 0)
         {
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime * DataManager.instance.paciencia;
 
             _timerSprite.color = Color.Lerp(Color.red, Color.green, timer / fullTimer);
             _timerSprite.transform.localScale = new(1.2f * (timer/fullTimer), 0.15f, 0);
 
             yield return new WaitForEndOfFrame();
         }
+
+
     }
 
 }

@@ -18,7 +18,7 @@ public class WellScript : MonoBehaviour, Iinteractable
 
             PlayerMovment.freePlayer = false;
 
-            Invoke("finishWater", waterTime);
+            Invoke("finishWater", waterTime * DataManager.instance.pocoVel);
         }
     }
 

@@ -7,11 +7,15 @@ public class LightScript : MonoBehaviour
 {
     public int radius;
     Collider2D _lightCollider;
+    public GameObject luz;
     [SerializeField] LayerMask playerLayer;
 
     private void Start()
     {
         _lightCollider = GetComponent<Collider2D>();
+
+        luz.transform.localScale *= DataManager.instance.lightR;
+        
     }
     void Update()
     {

@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 1691718947}
   - component: {fileID: 1691718954}
   - component: {fileID: 1769451539}
+  - component: {fileID: 4072152379754959377}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,10 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361570cf93b5304479ed80450f058975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiSprite: {fileID: 21300000, guid: 521a4d6b501f67344ab07a5e517e46c7, type: 3}
-  reactTransform: {fileID: 0}
-  inventoryUI: {fileID: 2798975417546576016, guid: af329a7aab0683d4892a2627f9baf75a, type: 3}
-  space: 6
   items: []
   equipedItem: {fileID: 0}
   open: 0
@@ -209,3 +206,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4072152379754959377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066878187222974418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f20f805287976b44b72c02d84c98e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  hearts: []
+  healthbar: {fileID: 5547017423313140621, guid: 776e919883276d5478b76f8f33f5aa28, type: 3}
+  heart: {fileID: 43993781388214926, guid: fd2825a97f49d164098c21fa4cb08b48, type: 3}

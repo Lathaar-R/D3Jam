@@ -87,6 +87,7 @@ public class Vaso : MonoBehaviour, Iinteractable
                 plantaDoVaso = null;
                 readyPlant = false;
                 stage = 0;
+                growing = 0;
             }
 
             return;

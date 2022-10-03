@@ -11,14 +11,13 @@ public class CoinsScript : MonoBehaviour
 
 
 
-    Vector3 _normalPos = new(-910, -50);
-    Vector3 _upgradePos = new(0, -50);
+    public Vector3 normalPos;
+    public Vector3 upgradePos;
 
     
 
     private void OnEnable() {
-        DataManager.instance.addCoinCallback += OnAddCoinCallBack;
-        GameManagerScript.instance.finishLevelCallback += OnFinishLevel;
+        
         
     }
 
@@ -29,8 +28,10 @@ public class CoinsScript : MonoBehaviour
 
     private void OnFinishLevel()
     {
-        transform.position = _upgradePos;
-        transform.localScale = 2 * Vector3.one;
+        transform.localPosition = upgradePos;
+        //transform.localScale = 2 * Vector3.one;
+
+        //transform.SetSiblingIndex(10);
     }
 
     private void OnAddCoinCallBack()
@@ -41,8 +42,11 @@ public class CoinsScript : MonoBehaviour
     void Start()
     {
         _canvas = GameObject.Find("Canvas");
-        
 
+        DataManager.instance.addCoinCallback += OnAddCoinCallBack;
+        GameManagerScript.instance.finishLevelCallback += OnFinishLevel;
+        
+        normalPos = transform.position;
     }
 
     // Update is called once per frame

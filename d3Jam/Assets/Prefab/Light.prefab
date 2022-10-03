@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1
+  luz: {fileID: 3293000908621989467}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
