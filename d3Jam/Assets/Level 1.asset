@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3aa5c48e1319cb4f9085d926a9e4c66, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  clients: 2
-  time: 0100000005000000
+  clients: 8
+  time: 010000000f00000014000000140000001b0000000a000000190000000a000000
   clientOrderItemList:
+  - {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}
+  - {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}
+  - {fileID: 11400000, guid: be5562ceb5c337d458729f547423c795, type: 2}
+  - {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}
+  - {fileID: 11400000, guid: be5562ceb5c337d458729f547423c795, type: 2}
+  - {fileID: 11400000, guid: be5562ceb5c337d458729f547423c795, type: 2}
   - {fileID: 11400000, guid: ebf7d20ec7484f1448fe253bbc2dd601, type: 2}
   - {fileID: 11400000, guid: be5562ceb5c337d458729f547423c795, type: 2}
   seedsOfLevel:
