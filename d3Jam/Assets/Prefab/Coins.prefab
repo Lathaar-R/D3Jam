@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9, y: -10}
+  m_AnchoredPosition: {x: 20.6, y: -0.000024438}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7431376331670005516
@@ -66,17 +66,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 199
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: da2beeba11694aa4786bd2069dfe3971, type: 2}
-  m_sharedMaterial: {fileID: -5356592107634887863, guid: da2beeba11694aa4786bd2069dfe3971, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7a70e2c597e78764ea6d804067424626, type: 2}
+  m_sharedMaterial: {fileID: 3896471965405740395, guid: 7a70e2c597e78764ea6d804067424626, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281911287
+  m_fontColor: {r: 0.9686275, g: 0.7803922, b: 0.21960786, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -302,5 +302,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00f35cbd3098df45870df5fbf2afb63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalPos: {x: 0, y: 0, z: 0}
+  normalPos: {x: 0, y: 0, z: 0}
   upgradePos: {x: -133, y: 383.5, z: 0}
