@@ -17,5 +17,5 @@ MonoBehaviour:
   sprite: {fileID: 0}
   id: 5
   coins: 100
-  time: 100
+  time: 150
   description: 

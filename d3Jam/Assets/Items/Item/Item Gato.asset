@@ -16,6 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1655a4241b142784f845a7971083a36c, type: 3}
   sprite: {fileID: 0}
   id: 5
-  coins: 0
-  time: 0
+  coins: 150
+  time: 200
   description: 

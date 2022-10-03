@@ -23,5 +23,5 @@ MonoBehaviour:
   - Agua
   - Luz
   - Tomate
-  growTime: 5
+  growTime: 8
   maxStage: 0

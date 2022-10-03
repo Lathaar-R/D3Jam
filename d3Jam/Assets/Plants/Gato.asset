@@ -23,5 +23,5 @@ MonoBehaviour:
   - Agua
   - Luz
   - Passaro
-  growTime: 0
+  growTime: 8
   maxStage: 0
