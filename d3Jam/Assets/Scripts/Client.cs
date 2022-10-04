@@ -24,6 +24,9 @@ public class Client : MonoBehaviour, Iinteractable
 
     int coins;
 
+    AudioSource audioSource;
+    public AudioClip arriveSound, deliverySound, wrongSound;
+
     void Start()
     {
         timer = item.time;
@@ -56,6 +59,8 @@ public class Client : MonoBehaviour, Iinteractable
         _spawner = GameObject.Find("ClientSpawner").GetComponent<SpawnerScript>();
 
         _bubbleSprite.gameObject.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -82,6 +87,7 @@ public class Client : MonoBehaviour, Iinteractable
         _bubbleSprite.gameObject.SetActive(true);
 
         _animator.Play("SpeachBubbleAnimation");
+        audioSource.PlayOneShot(arriveSound);
     }
 
     public void OnInteract()
@@ -91,7 +97,7 @@ public class Client : MonoBehaviour, Iinteractable
         {
             if(Inventory.instance.equipedItem.itemName == item.itemName && (Inventory.instance.equipedItem.id == itemType.planta || Inventory.instance.equipedItem.id == itemType.animal))
             {
-                
+                audioSource.PlayOneShot(deliverySound);
                 _spawner.Served(this);
                 
             }
@@ -102,7 +108,7 @@ public class Client : MonoBehaviour, Iinteractable
 
             Inventory.instance.Remove(Inventory.instance.equipedItem);
             Inventory.instance.UnequipItem();
-            Destroy(gameObject);
+            Destroy(gameObject, 1);
         }
     }
 
@@ -124,6 +130,7 @@ public class Client : MonoBehaviour, Iinteractable
         }
 
         _spawner.WrongServed(this);
+        Destroy(gameObject, 1);
     }
 
 }
