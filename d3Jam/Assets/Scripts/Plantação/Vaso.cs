@@ -15,11 +15,15 @@ public class Vaso : MonoBehaviour, Iinteractable
 
     public int stage = 0;
 
+    AudioSource audioSource;
+
     
     void Start()
     {
         transform.position = Vector3Int.FloorToInt(transform.position);
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -72,7 +76,7 @@ public class Vaso : MonoBehaviour, Iinteractable
         {
             Debug.Log("Planta finalizada!");
             readyPlant = true;
-            plantaDoVaso.somDePronto.Play();
+            audioSource.PlayOneShot(plantaDoVaso.somDePronto);
         }
     }
 
