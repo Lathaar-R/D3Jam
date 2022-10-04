@@ -116,5 +116,6 @@ public class UpgradeScript : MonoBehaviour
     {
         open = false;
         UpgradeUI.SetActive(false);
+        slot = 0;
     }
 }

@@ -117,7 +117,7 @@ public class ChestScript : MonoBehaviour, Iinteractable
         cool = true;
         _spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f);
 
-        yield return new WaitForSecondsRealtime(coolDown);
+        yield return new WaitForSecondsRealtime(coolDown * DataManager.instance.chestBonus);
 
         _spriteRenderer.color = Color.white;
         cool = false;

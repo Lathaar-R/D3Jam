@@ -29,9 +29,9 @@ public class DataManager : MonoBehaviour
 
     public float lightR = 1;
     public float paciencia = 1;
-    public float pocoVel = 1;
+    public float pocoVel = 1;   
+    public float chestBonus = 1;
 
-    
 
     private void Awake()
     {
