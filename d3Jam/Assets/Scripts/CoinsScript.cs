@@ -34,6 +34,11 @@ public class CoinsScript : MonoBehaviour
         //transform.SetSiblingIndex(10);
     }
 
+    public void GoBackCoinPos()
+    {
+        transform.position = normalPos;
+    }
+
     private void OnAddCoinCallBack()
     {
         GetComponentInChildren<TextMeshProUGUI>().text = DataManager.instance.GetCoins().ToString();

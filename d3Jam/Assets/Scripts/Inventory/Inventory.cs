@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Inventory : MonoBehaviour
 {
     #region Singleton
 
     public static Inventory instance;
+    AudioSource audioSource;
 
     GameObject inventoryUI;
     //public Canvas mainCanvas;
@@ -27,6 +29,7 @@ public class Inventory : MonoBehaviour
 
     private void Start() {
 
+        audioSource = GetComponent<AudioSource>();
         var canvas = GameObject.Find("Canvas");
 
         inventoryUI = Instantiate<GameObject>(DataManager.instance.inventoryUI, canvas.transform);
@@ -61,7 +64,9 @@ public class Inventory : MonoBehaviour
 
     public bool open;
     public int slotPos = 0;
-    
+    public AudioClip openSound;
+    public AudioClip closeSound;
+
     private void OnDestroy() {
         Destroy(inventoryUI);
     }
@@ -123,6 +128,7 @@ public class Inventory : MonoBehaviour
 
     void CloseInventory()
     {
+        audioSource.PlayOneShot(closeSound);
         PlayerMovment.freePlayer = true;
         onOpenInventory?.Invoke();
         open = false;
@@ -130,6 +136,7 @@ public class Inventory : MonoBehaviour
 
     void OpenInventory()
     {
+        audioSource.PlayOneShot(openSound);
         PlayerMovment.freePlayer = false;
         onOpenInventory?.Invoke();
         open = true;

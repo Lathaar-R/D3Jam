@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class ChestScript : MonoBehaviour, Iinteractable
 {
     private Collider2D _chestCollider;
@@ -18,6 +19,10 @@ public class ChestScript : MonoBehaviour, Iinteractable
     public int slotPos = 0;
     bool open;
 
+    AudioSource audioSource;
+    AudioClip   abrindoChest;
+    AudioClip   fechandoChest;
+
     //[SerializeField] ContactFilter2D _contactFilter;
     [SerializeField] private GameObject itemsParent;
     [SerializeField] private GameObject selection;
@@ -26,6 +31,8 @@ public class ChestScript : MonoBehaviour, Iinteractable
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
         var canvas = GameObject.Find("Canvas");
@@ -91,6 +98,8 @@ public class ChestScript : MonoBehaviour, Iinteractable
         itemsParent.SetActive(false);
         PlayerMovment.freePlayer = true;
         open = false;
+
+        audioSource.PlayOneShot(fechandoChest);
     }
 
     public void OnInteract()
@@ -104,6 +113,7 @@ public class ChestScript : MonoBehaviour, Iinteractable
     {
         itemsParent.SetActive(true);
 
+        audioSource.PlayOneShot(abrindoChest);
         PlayerMovment.freePlayer = false;
     }
 

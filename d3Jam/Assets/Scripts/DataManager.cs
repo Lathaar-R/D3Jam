@@ -56,6 +56,7 @@ public class DataManager : MonoBehaviour
 
     private void GoToNextLevel()
     {
+        coinsObject.GetComponent<CoinsScript>().GoBackCoinPos();
         level++;
     }
 

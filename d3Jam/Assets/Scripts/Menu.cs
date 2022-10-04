@@ -8,6 +8,14 @@ public class Menu : MonoBehaviour
     [SerializeField] private string gameScene;
     [SerializeField] private string creditsScene;
 
+    public AudioSource audioSource;
+    public AudioClip hoverSound;
+
+    private void Start()
+    {
+       audioSource = GetComponent<AudioSource>();
+    }
+
     public void PlayGame(){
         OpenScene(gameScene);
     }
@@ -22,5 +30,10 @@ public class Menu : MonoBehaviour
 
     void OpenScene(string sceneToLoad){
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    public void OnenterMouse()
+    {
+        audioSource.PlayOneShot(hoverSound);
     }
 }

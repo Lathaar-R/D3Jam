@@ -193,7 +193,7 @@ public class GameManagerScript : MonoBehaviour
 
         if(level > DataManager.instance.levels.Count)
         {
-            SceneManager.LoadScene("FinishScene");
+            SceneManager.LoadScene("GameOver");
         }
         else
         {
