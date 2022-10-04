@@ -31,9 +31,13 @@ public class Vaso : MonoBehaviour, Iinteractable
     {
        if(!readyPlant)
        {
+        Debug.Log("entrou no if");
             if(plantaDoVaso)
-                if((plantaDoVaso.needsToGrow[stage] == "Luz") && Physics2D.OverlapBox(transform.position, Vector2.one, 0, LayerMask.NameToLayer("Light")))
+            {
+                Debug.Log("entrou no if2");
+                if((plantaDoVaso.needsToGrow[stage] == "Luz") && Physics2D.OverlapBox(transform.position, Vector2.one, 1, LayerMask.NameToLayer("Light")))
                 {
+                    Debug.Log("entrou no if3");
                     growing += Time.deltaTime * DataManager.instance.soilMultiplyer;
                     Debug.Log("Luz na planta");
 
@@ -43,6 +47,7 @@ public class Vaso : MonoBehaviour, Iinteractable
                         
                     }
                 }
+            }
        }
        else
        {
