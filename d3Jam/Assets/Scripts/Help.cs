@@ -22,6 +22,7 @@ public class Help : MonoBehaviour
     }
 
     private void OnDestroy() {
-        help.SetActive(false);
+        if(help)
+            help.SetActive(false);
     }
 }

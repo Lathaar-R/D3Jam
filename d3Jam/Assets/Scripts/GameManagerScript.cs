@@ -59,10 +59,11 @@ public class GameManagerScript : MonoBehaviour
 
     void Start()
     {
+        gameMusic = GetComponent<AudioSource>();
         ChangeGameState("play");
         StartCoroutine(nameof(FadeIn), 2);
 
-        gameMusic.GetComponent<AudioSource>();
+        
     }
 
     void StartGame()
