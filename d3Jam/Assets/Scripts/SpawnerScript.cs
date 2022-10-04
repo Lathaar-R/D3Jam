@@ -6,6 +6,7 @@ public class SpawnerScript : MonoBehaviour
 {
     PlayerHealth player;
     int _served = 0;
+    int i = 0;
     public GameObject clientPrefab;
 
     public List<GameObject> spawnAreas;
@@ -54,20 +55,20 @@ public class SpawnerScript : MonoBehaviour
             pos = Vector3Int.RoundToInt(pos);
             
         }while(clientPos.Contains(pos));
-
+        clientPos.Add(pos);
         var c = Instantiate<GameObject>(clientPrefab, pos, Quaternion.identity);
-        
+        i++;
         c.GetComponent<Client>().dir = direction[place / 2];
         c.GetComponent<Client>().item = DataManager.instance.LevelInfo.clientOrderItemList[clients.Count];
         
         clients.Add(c);
 
-        if(clients.Count < DataManager.instance.LevelInfo.clients)
+        if(i < DataManager.instance.LevelInfo.clients)
             Invoke(nameof(Spawn), DataManager.instance.LevelInfo.time[clients.Count]);
 
-        clientPos.Add(pos);
+        
 
-        if(clients.Count >= DataManager.instance.LevelInfo.clients)
+        if(i >= DataManager.instance.LevelInfo.clients)
         {
             StopSpawning();
         }
@@ -104,6 +105,7 @@ public class SpawnerScript : MonoBehaviour
         clients.Clear();
 
         _served = 0;
+        i = 0;
     }
 
 }

@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Help : MonoBehaviour
 {
-    GameObject help;
+    static GameObject help;
     bool open;
     void Start()
     {
-        if(!GameObject.Find("Help"))
+        if(help)
         {
-            help = GameObject.Find("Help");
-            help.SetActive(false);
+
         }
+        else
+        {
+        help = GameObject.Find("Help");
+        help.SetActive(false);
+        }
+        
     }
 
     // Update is called once per frame
