@@ -15,6 +15,8 @@ public class Vaso : MonoBehaviour, Iinteractable
 
     public int stage = 0;
 
+    public LayerMask luz;
+
     AudioSource audioSource;
     public AudioClip colhendo;
     
@@ -32,7 +34,7 @@ public class Vaso : MonoBehaviour, Iinteractable
        if(!readyPlant)
        {
             if(plantaDoVaso)
-                if((plantaDoVaso.needsToGrow[stage] == "Luz") && Physics2D.OverlapBox(transform.position, Vector2.one, 0, LayerMask.NameToLayer("Light")))
+                if((plantaDoVaso.needsToGrow[stage] == "Luz") && Physics2D.OverlapBox(transform.position, Vector2.one, 0, luz))
                 {
                     growing += Time.deltaTime * DataManager.instance.soilMultiplyer;
                     Debug.Log("Luz na planta");

@@ -70,8 +70,8 @@ public class ChestScript : MonoBehaviour, Iinteractable
             Invoke("CloseMenu", Time.fixedDeltaTime);
         }
 
-        if(Input.GetKeyDown(KeyCode.D)) slotPos++;
-        if(Input.GetKeyDown(KeyCode.A)) slotPos--;
+        if(Input.GetKeyDown(KeyCode.RightArrow)) slotPos++;
+        if(Input.GetKeyDown(KeyCode.LeftArrow)) slotPos--;
         slotPos = Mathf.Clamp(slotPos, 0, DataManager.instance.LevelInfo.seedsOfLevel.Count - 1);
     
 
