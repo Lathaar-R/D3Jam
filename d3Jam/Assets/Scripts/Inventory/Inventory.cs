@@ -83,14 +83,14 @@ public class Inventory : MonoBehaviour
 
         if(open)
         {
-            if(Input.GetKeyDown(KeyCode.D))
+            if(Input.GetKeyDown(KeyCode.RightArrow))
             {
                 slotPos++;
                 slotPos = Mathf.Clamp(slotPos, 0, items.Count - 1);
                 onInventoryInteract?.Invoke();
             }
 
-            if(Input.GetKeyDown(KeyCode.A)) 
+            if(Input.GetKeyDown(KeyCode.LeftArrow)) 
             {
                 slotPos--;
                 slotPos = Mathf.Clamp(slotPos, 0, items.Count - 1);
