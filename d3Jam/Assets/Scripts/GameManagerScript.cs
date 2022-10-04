@@ -53,6 +53,7 @@ public class GameManagerScript : MonoBehaviour
         }
 
         Destroy(gameObject);
+
     }
 
 
@@ -84,7 +85,7 @@ public class GameManagerScript : MonoBehaviour
             case "play": 
                         CreateLevel();
                         spawnerScript.StartSpawning();
-
+                        gameMusic.Play();
                         break;
             case "finishedLevel":
                         FinishLevel();
@@ -95,6 +96,7 @@ public class GameManagerScript : MonoBehaviour
                         break;
             case "GameOver":
                         GameOver();
+                        gameMusic.Stop();
                         break;
             
         }

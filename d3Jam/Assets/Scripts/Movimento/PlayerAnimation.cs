@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerAnimation : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class PlayerAnimation : MonoBehaviour
     PlayerMovment _movementScript;
     SpriteRenderer _playerSpriteRenderer;
     string _currentState;
+
+    AudioSource audioSource;
+    public AudioClip andando;
 
     public List<string> animations; 
     void Start()
@@ -20,6 +24,8 @@ public class PlayerAnimation : MonoBehaviour
         _currentState = "Idle";
 
         ChangeAnimation(_currentState);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -55,6 +61,11 @@ public class PlayerAnimation : MonoBehaviour
         //Update the current state
         _currentState = newState;
         Debug.Log("Change");
+    }
+
+    public void WalkSound()
+    {
+        audioSource.PlayOneShot(andando);
     }
 
 }

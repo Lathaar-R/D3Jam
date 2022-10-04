@@ -16,6 +16,7 @@ public class Vaso : MonoBehaviour, Iinteractable
     public int stage = 0;
 
     AudioSource audioSource;
+    public AudioClip colhendo;
 
     
     void Start()
@@ -93,6 +94,7 @@ public class Vaso : MonoBehaviour, Iinteractable
                 readyPlant = false;
                 stage = 0;
                 growing = 0;
+                audioSource.PlayOneShot(colhendo);
             }
 
             return;

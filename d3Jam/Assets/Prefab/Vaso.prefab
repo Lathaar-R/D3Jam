@@ -100,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantaDoVaso: {fileID: 0}
   baseSprite: {fileID: 1218076558, guid: 9662a7040284fac4f8ebc0947dbfcd1f, type: 3}
+  stage: 0
+  colhendo: {fileID: 8300000, guid: 4a5209aab88c12b4cbc55eeb0ba1e545, type: 3}
 --- !u!61 &6670665449297742952
 BoxCollider2D:
   m_ObjectHideFlags: 0
