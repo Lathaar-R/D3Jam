@@ -22,4 +22,4 @@ MonoBehaviour:
   - Agua
   - Luz
   growTime: 8
-  maxStage: 2
+  somDePronto: {fileID: 8300000, guid: 6895c320274ddff43af672481a93f48c, type: 3}

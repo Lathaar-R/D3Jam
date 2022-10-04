@@ -24,4 +24,4 @@ MonoBehaviour:
   - Luz
   - Passaro
   growTime: 8
-  maxStage: 0
+  somDePronto: {fileID: 8300000, guid: aeece6842e4b1924886ed1b291ef585a, type: 3}

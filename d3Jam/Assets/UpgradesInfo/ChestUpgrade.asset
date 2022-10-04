@@ -15,4 +15,5 @@ MonoBehaviour:
   Upicon: {fileID: 21300000, guid: abdba6329a538e34abd2cdcb0ab3f97f, type: 3}
   upgradeName: Livro
   price: 100
-  upgradeDescription: Livro description
+  upgradeDescription: "Um novo cap\xEDtulo do livro que ensina a forma correta de
+    manusear o ba\xFA. Muito mais \xE1gil!"

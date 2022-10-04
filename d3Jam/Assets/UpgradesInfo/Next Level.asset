@@ -15,4 +15,4 @@ MonoBehaviour:
   Upicon: {fileID: 21300000, guid: 04f2871c42da7b04ca9c5922f84fae70, type: 3}
   upgradeName: 
   price: 0
-  upgradeDescription: Proxima faze
+  upgradeDescription: "Pr\xF3xima fase."

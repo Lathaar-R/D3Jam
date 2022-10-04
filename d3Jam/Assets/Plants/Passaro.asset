@@ -24,4 +24,4 @@ MonoBehaviour:
   - Luz
   - Tomate
   growTime: 8
-  maxStage: 0
+  somDePronto: {fileID: 8300000, guid: 9dd3f9c735996cc468b7e57948aa1667, type: 3}

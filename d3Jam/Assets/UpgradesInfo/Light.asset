@@ -15,4 +15,5 @@ MonoBehaviour:
   Upicon: {fileID: 21300000, guid: c099622d1e30c034697bf8832be73b1e, type: 3}
   upgradeName: Refletor
   price: 100
-  upgradeDescription: Refletor Description
+  upgradeDescription: "Voc\xEA n\xE3o ir\xE1 se arrepender de colocar esse refletor
+    no seu lampi\xE3o! Ir\xE1 iluminar mais plantas de uma s\xF3 vez!"

@@ -15,4 +15,4 @@ MonoBehaviour:
   Upicon: {fileID: 21300000, guid: 42f5fe2e08afb8a47a7152f675cd7f9f, type: 3}
   upgradeName: Manivela melhor
   price: 100
-  upgradeDescription: Description
+  upgradeDescription: "Essa manivela com certeza facilitar\xE1 pegar \xE1gua do po\xE7o."

@@ -398,6 +398,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Fence_14
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26d2163cf18f262408f73e5eabc6fa4a
+      internalID: 1180590359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fence_15
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28c3205aa0e0e5d40b92f33af1b96e8b
+      internalID: 1921047935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -410,11 +452,13 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Fence_13: -1425259559
+      Fence_15: 1921047935
       Fence_11: 462774797
       Fence_1: 1802156069
       Fence_6: -1364878237
       Fence_9: 685360533
       Fence_4: 373703065
+      Fence_14: 1180590359
       Fence_10: -58042396
       Fence_2: -1418687270
       Fence_7: 973035825
