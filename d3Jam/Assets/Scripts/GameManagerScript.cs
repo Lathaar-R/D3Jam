@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -40,6 +41,8 @@ public class GameManagerScript : MonoBehaviour
 
     public List<GameObject> objectsOfScene;
 
+    public AudioSource gameMusic;
+
     private void Awake()
     {
         if(instance == null)
@@ -57,6 +60,8 @@ public class GameManagerScript : MonoBehaviour
     {
         ChangeGameState("play");
         StartCoroutine(nameof(FadeIn), 2);
+
+        //gameMusic.lo
     }
 
     void StartGame()
@@ -79,6 +84,7 @@ public class GameManagerScript : MonoBehaviour
             case "play": 
                         CreateLevel();
                         spawnerScript.StartSpawning();
+
                         break;
             case "finishedLevel":
                         FinishLevel();
@@ -183,7 +189,7 @@ public class GameManagerScript : MonoBehaviour
         
         Invoke(nameof(DestroyAll), 6);
 
-        if(DataManager.instance.levels.Count > level)
+        if(level > DataManager.instance.levels.Count)
         {
             SceneManager.LoadScene("FinishScene");
         }
