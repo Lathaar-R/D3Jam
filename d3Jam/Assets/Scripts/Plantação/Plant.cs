@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(fileName = "d3Jam/Plant", menuName = "Plant")]
 public class Plant : ScriptableObject 
@@ -17,6 +18,9 @@ public class Plant : ScriptableObject
     public List<string> needsToGrow;
 
     public float growTime;
-    public int maxStage;
+    
+    public AudioSource somDePronto;
+    
+    
 
 }

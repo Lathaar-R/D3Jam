@@ -72,6 +72,7 @@ public class Vaso : MonoBehaviour, Iinteractable
         {
             Debug.Log("Planta finalizada!");
             readyPlant = true;
+            plantaDoVaso.somDePronto.Play();
         }
     }
 
