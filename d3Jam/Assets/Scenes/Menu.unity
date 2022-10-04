@@ -772,8 +772,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7429ea70ff95a74e8d728002134df75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: UpgradeScene
-  creditsScene: ClientTest
+  gameScene: Cutscene
+  creditsScene: Credits
   audioSource: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 71e9c3085d901814f839de7536c85c21, type: 3}
 --- !u!82 &1301271521
