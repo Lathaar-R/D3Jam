@@ -32,7 +32,7 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 
-    public void OnenterMouse()
+    public void OnEnterMouse()
     {
         audioSource.PlayOneShot(hoverSound);
     }

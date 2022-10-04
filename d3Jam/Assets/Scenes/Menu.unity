@@ -183,8 +183,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Jogar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: da2beeba11694aa4786bd2069dfe3971, type: 2}
-  m_sharedMaterial: {fileID: -5356592107634887863, guid: da2beeba11694aa4786bd2069dfe3971, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7a70e2c597e78764ea6d804067424626, type: 2}
+  m_sharedMaterial: {fileID: 3896471965405740395, guid: 7a70e2c597e78764ea6d804067424626, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 1020886531}
   - component: {fileID: 1020886530}
   - component: {fileID: 1020886529}
+  - component: {fileID: 1020886532}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -368,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -392,6 +393,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020886527}
   m_CullTransparentMesh: 1
+--- !u!114 &1020886532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020886527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1301271520}
+          m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+          m_MethodName: OnEnterMouse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1132822815
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -540,17 +570,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 9
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1301271515}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+        - m_Target: {fileID: 1301271520}
+          m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+          m_MethodName: OnEnterMouse
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -745,7 +775,7 @@ MonoBehaviour:
   gameScene: UpgradeScene
   creditsScene: ClientTest
   audioSource: {fileID: 0}
-  hoverSound: {fileID: 0}
+  hoverSound: {fileID: 8300000, guid: 71e9c3085d901814f839de7536c85c21, type: 3}
 --- !u!82 &1301271521
 AudioSource:
   m_ObjectHideFlags: 0
@@ -867,7 +897,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397571701}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -878,7 +908,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 28.774}
+  m_SizeDelta: {x: 0, y: 28.774002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1397571703
 MonoBehaviour:
@@ -900,10 +930,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Cr\xE9ditos"
+  m_text: Creditos
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: da2beeba11694aa4786bd2069dfe3971, type: 2}
-  m_sharedMaterial: {fileID: -5356592107634887863, guid: da2beeba11694aa4786bd2069dfe3971, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7a70e2c597e78764ea6d804067424626, type: 2}
+  m_sharedMaterial: {fileID: 3896471965405740395, guid: 7a70e2c597e78764ea6d804067424626, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -989,6 +1019,7 @@ GameObject:
   - component: {fileID: 1626296528}
   - component: {fileID: 1626296527}
   - component: {fileID: 1626296526}
+  - component: {fileID: 1626296529}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -1087,7 +1118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1111,6 +1142,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626296524}
   m_CullTransparentMesh: 1
+--- !u!114 &1626296529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626296524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1301271520}
+          m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+          m_MethodName: OnEnterMouse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1643713219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,8 +1349,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sair
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: da2beeba11694aa4786bd2069dfe3971, type: 2}
-  m_sharedMaterial: {fileID: -5356592107634887863, guid: da2beeba11694aa4786bd2069dfe3971, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7a70e2c597e78764ea6d804067424626, type: 2}
+  m_sharedMaterial: {fileID: 3896471965405740395, guid: 7a70e2c597e78764ea6d804067424626, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

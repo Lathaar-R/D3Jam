@@ -75,7 +75,7 @@ public class Inventory : MonoBehaviour
     {
         if(PlayerMovment.freePlayer && !open)
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 Invoke("OpenInventory", Time.fixedDeltaTime);
             }
@@ -99,7 +99,7 @@ public class Inventory : MonoBehaviour
 
             
 
-            if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
             {
                 Invoke("CloseInventory", Time.fixedDeltaTime);
             }

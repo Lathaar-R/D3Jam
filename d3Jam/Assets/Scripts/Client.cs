@@ -77,6 +77,7 @@ public class Client : MonoBehaviour, Iinteractable
             move = false;
             AnimateWant();
             StartCoroutine(nameof(Timer));
+            GetComponent<Animator>().Play("idle_side");
         }
 
 

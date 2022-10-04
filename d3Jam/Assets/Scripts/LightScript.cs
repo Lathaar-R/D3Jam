@@ -19,27 +19,17 @@ public class LightScript : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L) && PlayerMovment.freePlayer)
-        {
-            if(Physics2D.OverlapBox(transform.position, _lightCollider.bounds.size, 0, playerLayer))
-            {
-                if(transform.parent == null)
-                    PickLantern();
-                else
-                    DropLantern();
-            }
-            
-        }
+        
     }
 
-    private void PickLantern()
+    public void PickLantern()
     {
         
         transform.SetParent(Inventory.instance.gameObject.transform);
         transform.localPosition = Vector3.zero;
     }
 
-    private void DropLantern()
+    public void DropLantern()
     {
         
         transform.SetParent(null);

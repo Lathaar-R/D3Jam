@@ -132,7 +132,7 @@ public class PlayerMovment : MonoBehaviour
     {
         //_playerInputs = new();
 
-        _playerInputs.x = (Input.GetKey(KeyCode.LeftArrow) ? 1 : 0) - (Input.GetKey(KeyCode.RightArrow) ? 1 : 0); 
+        _playerInputs.x = (Input.GetKey(KeyCode.RightArrow) ? 1 : 0) - (Input.GetKey(KeyCode.LeftArrow) ? 1 : 0); 
         _playerInputs.y = (Input.GetKey(KeyCode.UpArrow) ? 1 : 0) - (Input.GetKey(KeyCode.DownArrow) ? 1 : 0); 
 
         if(_playerInputs.sqrMagnitude != 0)

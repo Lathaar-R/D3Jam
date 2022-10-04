@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
   grabLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -188,6 +188,8 @@ MonoBehaviour:
   equipedItem: {fileID: 0}
   open: 0
   slotPos: 0
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
 --- !u!95 &1769451539
 Animator:
   serializedVersion: 4

@@ -54,9 +54,20 @@ public class PlayerHands : MonoBehaviour
             var hit = Physics2D.BoxCast(transform.position, _playerCollider.bounds.size, 0, _playerMovement.Direction, gridSize, objectsLayer);
             if(hit)
             {
-                Iinteractable interactableHit;
-                hit.collider.TryGetComponent<Iinteractable>(out interactableHit);
-                interactableHit?.OnInteract();
+                Debug.Log(hit.collider.name);
+                if(hit.collider.tag.Equals("Light"))
+                {
+                    if(hit.transform.parent == null)
+                        hit.collider.GetComponent<LightScript>().PickLantern();
+                    else
+                        hit.collider.GetComponent<LightScript>().DropLantern();
+                } 
+                else
+                {       
+                    Iinteractable interactableHit;
+                    hit.collider.TryGetComponent<Iinteractable>(out interactableHit);
+                    interactableHit?.OnInteract();
+                }
             }
         }
     }
