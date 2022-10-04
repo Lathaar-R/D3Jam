@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TerraNovaUpgrade
   m_EditorClassIdentifier: 
   Upicon: {fileID: 21300000, guid: 1e14659cd2c0d94469b58ae084ce7d92, type: 3}
-  upgradeName: Umento de Terra
+  upgradeName: Expandir cultivo
   price: 100
-  upgradeDescription: Description
+  upgradeDescription: "Uma p\xE1 que retira toda a terra suja e implant\xE1vel e
+    torna o solo pronto para o uso de qualquer planta"

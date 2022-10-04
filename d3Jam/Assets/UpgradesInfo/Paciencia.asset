@@ -15,4 +15,5 @@ MonoBehaviour:
   Upicon: {fileID: 21300000, guid: d5e102733c4a156409a3df764dcff3ee, type: 3}
   upgradeName: Incenso
   price: 100
-  upgradeDescription: Incenso description
+  upgradeDescription: "Clientes zangados? Esse incenso com certeza acalmar\xE1 seus
+    nervos."

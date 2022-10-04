@@ -24,4 +24,4 @@ MonoBehaviour:
   - Luz
   - Cenoura
   growTime: 8
-  maxStage: 0
+  somDePronto: {fileID: 8300000, guid: d1e7d61c666c60d4481eb63195795ae9, type: 3}

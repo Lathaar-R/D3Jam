@@ -24,4 +24,4 @@ MonoBehaviour:
   - Luz
   - Coelho
   growTime: 8
-  maxStage: 0
+  somDePronto: {fileID: 8300000, guid: 74748ba2849801747bf46ed4c4f83910, type: 3}

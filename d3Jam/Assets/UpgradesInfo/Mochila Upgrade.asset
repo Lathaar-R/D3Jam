@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mochila Upgrade
   m_EditorClassIdentifier: 
   Upicon: {fileID: 21300000, guid: 60d1b1bdc37ad1b4d97d187c57434932, type: 3}
-  upgradeName: 
+  upgradeName: Mochila maior
   price: 100
-  upgradeDescription: Uma mochila maior
+  upgradeDescription: "Uma mochila mais organizada e maior! Tem tantos bolsos que
+    pode at\xE9 dobrar seu invent\xE1rio!"
