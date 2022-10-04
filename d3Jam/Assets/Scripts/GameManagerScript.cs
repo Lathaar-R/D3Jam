@@ -41,7 +41,7 @@ public class GameManagerScript : MonoBehaviour
 
     public List<GameObject> objectsOfScene;
 
-    public AudioSource gameMusic;
+    AudioSource gameMusic;
 
     private void Awake()
     {
@@ -61,7 +61,7 @@ public class GameManagerScript : MonoBehaviour
         ChangeGameState("play");
         StartCoroutine(nameof(FadeIn), 2);
 
-        //gameMusic.lo
+        gameMusic.GetComponent<AudioSource>();
     }
 
     void StartGame()

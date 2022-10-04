@@ -19,7 +19,7 @@ public class Plant : ScriptableObject
 
     public float growTime;
     
-    public AudioSource somDePronto;
+    public AudioClip somDePronto;
     
     
 
