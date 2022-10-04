@@ -3807,6 +3807,7 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: 170b597da730d684db6cec5279a17572, type: 2}
   - {fileID: 11400000, guid: c8633c1d85bda704d8696249b1dfd6e9, type: 2}
+  - {fileID: 11400000, guid: 5129b52abcea99f4abc7a7012ff57586, type: 2}
   soilMultiplyer: 1
   inventorySpace: 6
   inventoryUI: {fileID: 2798975417546576016, guid: af329a7aab0683d4892a2627f9baf75a, type: 3}
