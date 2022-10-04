@@ -35,6 +35,7 @@ public class Vaso : MonoBehaviour, Iinteractable
        {
         Debug.Log("entrou no if");
             if(plantaDoVaso)
+            {
                 if((plantaDoVaso.needsToGrow[stage] == "Luz") && Physics2D.OverlapBox(transform.position, Vector2.one, 0, luz))
                 {
                     Debug.Log("entrou no if3");
