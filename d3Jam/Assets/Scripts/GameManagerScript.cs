@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+    int level = 1;
     string gameState;
 
     public Action endLevelCallback;
@@ -26,7 +27,9 @@ public class GameManagerScript : MonoBehaviour
     List<GameObject> vasos;
 
     [SerializeField] Vector3 startPos;
-    [SerializeField] Vector3[] vasosPos;
+    public List<Vector3> vasosPos;
+    public List<Vector3> extraVasosPos;
+
     [SerializeField] Light2D globalLight;
     //[SerializeField] GameObject inventoryUI;
 
@@ -134,7 +137,7 @@ public class GameManagerScript : MonoBehaviour
 
     void CreateVase()
     {
-        for(int i = 0; i < vasosPos.Length; i++)
+        for(int i = 0; i < vasosPos.Count; i++)
         {
             objectsOfScene.Add(Instantiate<GameObject>(_vasoPrefab, vasosPos[i], Quaternion.identity));
         }
@@ -180,7 +183,16 @@ public class GameManagerScript : MonoBehaviour
         
         Invoke(nameof(DestroyAll), 6);
 
-        Invoke(nameof(GoToUpgrades), 6);
+        if(DataManager.instance.levels.Count > level)
+        {
+            SceneManager.LoadScene("FinishScene");
+        }
+        else
+        {
+            Invoke(nameof(GoToUpgrades), 6);
+        }
+
+        level++;
 
         
     }
