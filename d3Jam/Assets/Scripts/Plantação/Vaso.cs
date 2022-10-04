@@ -17,7 +17,6 @@ public class Vaso : MonoBehaviour, Iinteractable
 
     AudioSource audioSource;
     public AudioClip colhendo;
-
     
     void Start()
     {
