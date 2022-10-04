@@ -8,8 +8,11 @@ public class Help : MonoBehaviour
     bool open;
     void Start()
     {
-        help = GameObject.Find("Help");
-        help.SetActive(false);
+        if(!GameObject.Find("Help"))
+        {
+            help = GameObject.Find("Help");
+            help.SetActive(false);
+        }
     }
 
     // Update is called once per frame
